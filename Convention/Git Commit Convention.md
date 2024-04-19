@@ -27,7 +27,7 @@ SPM > 사용되지않는 FireBase 프레임워크 제거
 `Style` - 코드 스타일 변경  
 `Refactor` - 코드 리팩토링 수행  
 `Test` - 테스트 코드 추가  
-`Chore` - 빌드 구성, 프레임 워크 변경, gitignore 수정 등 프로젝트 구성 정보 수정
+`Chore` - 빌드 구성, 프레임 워크 변경, gitignore 수정 등 프로젝트 구성 정보 수정  
 `Remove` - 파일 제거  
 `Rename` - 파일 명 변경  
 
