@@ -30,6 +30,7 @@ SPM > 사용되지않는 FireBase 프레임워크 제거
 `Chore` - 빌드 구성, 프레임 워크 변경, gitignore 수정 등 프로젝트 구성 정보 수정  
 `Remove` - 파일 제거  
 `Rename` - 파일 명 변경  
+`Add` - 파일 & 디렉토리 추가
 
 
 
