@@ -1,26 +1,33 @@
 # Color System
-사용자가 제품을 사용하면서 높은 사용자 경험을 얻을 수 있도록, 상황에 따른 일관적인 색상을 표시하는 것은 중요하다.
+사용자가 제품을 사용하면서 높은 사용자 경험(콘텐츠에 온전히 집중이 가능하도록 만듦)을 얻을 수 있도록, 
+상황에 따른 일관적인 색상을 표시하는 것은 중요하다.
 또한 제품을 만드는 개발자와 디자이너간 원활한 소통 및 협업을 위해서도 이러한 규칙이 필요하다.
 
 <br>
 
 ### 브랜드 컬러(Brand Color)
 <center><img src="../Resource/Image/Design/ColorSystem/imgBrandColor.png" width="50%"></center>
+
 *브랜드 컬러*  
 
 브랜드를 나타내는 **고유한 색상**으로 브랜드 전체의 통일감을 부여하며, 사용자에게 같은 메시지를 전달할 때 효과적이다.
-예시로 카카오톡의 노란색, 에어비앤비의 핑크색을 예로 들 수 있겠다.
+예시로 애플의 흰색, 네이버의 초록색, 카카오톡의 노란색을 예로 들 수 있겠다.
 
 브랜드 컬러는 2가지 색상으로 구성된다.
 소수의 컬러를 사용함으로써 브랜드 색상을 **각인**시키고, 일관적인 사용자 경험을 전달할 수 있다.
 
 너무 단조롭게 느껴질 경우, 채도와 명도를 더할 수 있다.
 
-**PrimaryColor**  
+**Primary Color**  
+<center><img src="../Resource/Image/Design/ColorSystem/imgPrimaryColor.png" width="50%"></center>
 가장 일반적으로 사용되는 색상이다.
+주로 네비게이션 바, 텍스트 타이틀 등의 색상에 사용된다.  
 
-**SecondaryColor**  
+**Secondary Color (ActionColor)**  
 `PrimaryColor` 와 대비되는 색을 주로 사용한다.
+주로 버튼, 스위치, 현재 위치, 프로그레스 바 등에서 사용된다.
+
+`PrimaryColor` 와 `SecondaryColor` 는 **보색**을 기본으로 한다.
 
 <br>
 
@@ -38,8 +45,10 @@
 
 *라벨과 버튼에 색상이 지정된 예시*
 
-
+### 상호작용(Interaction)
 
 # 참고
 https://remain.co.kr/page/designsystem/brand-color.php (브랜드 컬러)
+https://brunch.co.kr/@chulhochoiucj0/17 (
+모바일 UI 디자인 기본 요소 - 색채 Color)
 https://color.adobe.com/ko/create/color-wheel (컬러 휠)
