@@ -45,7 +45,21 @@
 
 *라벨과 버튼에 색상이 지정된 예시*
 
-### 상호작용(Interaction)
+<br>
+
+### 인터렉션 컬러(Interaction Color)
+
+<center><img src="../Resource/Image/Design/ColorSystem/imgInteractionColor.png" width="50%"></center>  
+
+*인터렉션 컬러*
+
+유저와 제품이 상호작용할 수 있는 요소(버튼, 스위치 등)에 적용되는 색상
+예시로 마우스가 요소에 호버(hover) 되었을 때 유저가 인지할 수 있도록 밝게 표시하는 것을 들 수 있겠다.
+
+`Primary Color` 를 기본 값으로, `Interaction Color` 를 lighten, darken color 로 
+각각 4 ~ 5 단계로 나누어 사용한다.
+
+<br>
 
 # 참고
 https://remain.co.kr/page/designsystem/brand-color.php (브랜드 컬러)
