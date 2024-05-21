@@ -5,7 +5,7 @@ Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법
 
 **디버그 연결중단 개선**
 
-![Debugger lost connection](../Resource/Image/Command/imgLostConnectionDebugger.png}
+![Debugger lost connection](../Resource/Image/Command/imgLostConnectionDebugger.png){: width="200" height="100"}
 
 1. 홈 디렉토리에 .lldbinit 파일을 생성한다.
 ```bash
