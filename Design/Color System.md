@@ -62,7 +62,7 @@
 <br>
 
 # 참고
-https://remain.co.kr/page/designsystem/brand-color.php (브랜드 컬러)
+https://remain.co.kr/page/designsystem/brand-color.php (브랜드 컬러)  
 https://brunch.co.kr/@chulhochoiucj0/17 (
-모바일 UI 디자인 기본 요소 - 색채 Color)
-https://color.adobe.com/ko/create/color-wheel (컬러 휠)
+모바일 UI 디자인 기본 요소 - 색채 Color)  
+https://color.adobe.com/ko/create/color-wheel (컬러 휠)  
