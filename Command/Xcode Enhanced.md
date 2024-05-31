@@ -35,7 +35,7 @@ settings set target.experimental.swift-enable-cxx-interop false
 **Git ssh**
 1. 키 생성 명령어 입력
 ```bash
-ssh-keygen -t ecdsa -C "your_email@example.com"
+ssh-keygen -t ecdsa -C "your_email@example.com" -m PEM
 ```
 
 ![허용되지 않은 키 에러](../Resource/Image/Command/imgXcodeNotAllowSha1.png)  
@@ -43,15 +43,17 @@ ssh-keygen -t ecdsa -C "your_email@example.com"
 *keygen 의 타입 옵션을 주지 않으면 SHA-1 으로 생성된다.  
 Xcode 는 SHA-1 으로 암호화된 키를 허용하지 않기 때문에 ecdsa 방식으로 생성해야한다*
 
+*PEM 옵션은 pull, push 를 수행할 때 마다 인증을 해줘야하는 번거로움을 제거한다*
+
 2. ssh 키 생성  
 ~/.ssh 경로확인 및 passphrase 를 엔터로 스킵한다.   
 ![키 생성](../Resource/Image/Command/imgGeneratedSSHKeys.png)  
 
-3. 공개키(.pub) 깃 허브에 저장
+3. 공개키(.pub) 깃 허브에 저장  
 프로필 > Settings > SSH and GPG keys > New SSH key  
 ![키 등록](../Resource/Image/Command/imgGitSettings.png)  
 
-4. Xcode 설정  
+4. Xcode Git 설정  
 Xcode > Settings > Accounts > Source Control Accounts  
 ![Xcode 키 등록](../Resource/Image/Command/imgSSHKeyRegistForXcode.png)  
 
@@ -68,4 +70,7 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 <br>
 
 참고  
-[why lldb so painfully slow - stackoverflow](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
+
+[lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
+
+[git push 를 할 때 마다 인증 요청 문제](https://stackoverflow.com/questions/53879986/xcode-10-1-push-to-github-using-ssh-key) 
