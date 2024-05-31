@@ -38,22 +38,22 @@ settings set target.experimental.swift-enable-cxx-interop false
 ssh-keygen -t ecdsa -C "your_email@example.com"
 ```
 
-![허용되지 않은 키 에러](../resource/Image/Command/imgXcodeNotAllowSha1.png)  
+![허용되지 않은 키 에러](../Resource/Image/Command/imgXcodeNotAllowSha1.png)  
 
 *keygen 의 타입 옵션을 주지 않으면 SHA-1 으로 생성된다.  
 Xcode 는 SHA-1 으로 암호화된 키를 허용하지 않기 때문에 ecdsa 방식으로 생성해야한다*
 
 2. ssh 키 생성  
 ~/.ssh 경로확인 및 passphrase 를 엔터로 스킵한다.   
-![키 생성](../resource/Image/Command/imgGeneratedSSHKeys.png)  
+![키 생성](../Resource/Image/Command/imgGeneratedSSHKeys.png)  
 
 3. 공개키(.pub) 깃 허브에 저장
 프로필 > Settings > SSH and GPG keys > New SSH key  
-![키 등록](../resource/Image/Command/imgGitSettings.png)  
+![키 등록](../Resource/Image/Command/imgGitSettings.png)  
 
 4. Xcode 설정  
 Xcode > Settings > Accounts > Source Control Accounts  
-![Xcode 키 등록](../resource/Image/Command/imgSSHKeyRegistForXcode.png)  
+![Xcode 키 등록](../Resource/Image/Command/imgSSHKeyRegistForXcode.png)  
 
 5. 원격지 변경
 http 로 clone 을 받은 프로젝트라면 ssh 로 변경해줘야한다.  
