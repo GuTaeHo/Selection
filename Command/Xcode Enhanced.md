@@ -3,7 +3,7 @@ Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법
 
 <br>
 
-**디버그 연결중단 개선**
+### 디버그 연결중단 개선
 
 ![Debugger lost connection](../Resource/Image/Command/imgLostConnectionDebugger.png)
 
@@ -17,22 +17,25 @@ settings set plugin.process.gdb-remote.packet-timeout 300
 ```
 3. Xcode 를 재실행한다.
 
-참고  
-[Lost connection to the debugger - apple forum](https://forums.developer.apple.com/forums/thread/681037)
-
 <br>
 
-**디버깅 속도 개선**
+### 디버깅 속도 개선
+
+1. 홈 디렉토리에 .lldbinit 파일을 생성한다.
 ```bash
 vi ~/.lldbinit
 ```
+
+2. 다음 라인을 파일에 추가한다.  
 ```bash
 settings set target.experimental.swift-enable-cxx-interop false
 ```
 
+3. Xcode 를 재실행한다.
+
 <br>
 
-**Git ssh**
+### Git ssh 연결
 1. 키 생성 명령어 입력
 ```bash
 ssh-keygen -t ecdsa -C "your_email@example.com" -m PEM
@@ -69,8 +72,10 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 
 <br>
 
-참고  
+### 참고  
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
+
+[디버거 연결 해제](https://forums.developer.apple.com/forums/thread/681037)
 
 [git push 를 할 때 마다 인증 요청 문제](https://stackoverflow.com/questions/53879986/xcode-10-1-push-to-github-using-ssh-key) 
