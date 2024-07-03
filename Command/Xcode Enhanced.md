@@ -3,6 +3,18 @@ Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법
 
 <br>
 
+## 단축키
+### 
+```swift
+// 새로운 탭으로 열기
+Command + t
+
+// 현재 파일 네비게이터에 표시
+Command + Shift + j
+```
+
+## 설정
+
 ### 디버그 연결중단 개선
 
 ![Debugger lost connection](../Resource/Image/Command/imgLostConnectionDebugger.png)
