@@ -11,6 +11,9 @@ Command + t
 
 // 현재 파일 네비게이터에 표시
 Command + Shift + j
+
+// 상단 바 고정
+Alt + Command + t
 ```
 
 ## 설정
