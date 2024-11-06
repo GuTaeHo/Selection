@@ -87,6 +87,16 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 
 <br>
 
+### SPM 패키지 캐시 완전히 날려버리는 방법
+```
+rm -rf ~/Library/Developer/Xcode/DerivedData
+rm -rf ~/Library/Caches/org.swift.swiftpm
+rm -rf ~/Library/org.swift.swiftpm
+rm -rf ~/.swiftpm
+```
+
+<br>
+
 ### 참고  
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
