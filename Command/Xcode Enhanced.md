@@ -97,6 +97,16 @@ rm -rf ~/.swiftpm
 
 <br>
 
+### 빌드 시간 표시
+```
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+rm -rf ~/Library/Developer/Xcode/DerivedData
+``` 
+
+위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
+
+<br>
+
 ### 참고  
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
