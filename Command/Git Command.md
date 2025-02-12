@@ -17,6 +17,7 @@ git config --global core.quotepath false
 ```
 
 <br>
+<br>
 
 ## git push
 ### Tag 와 함께 현재 브랜치 푸쉬
@@ -25,6 +26,7 @@ git push origin main {태그명}
 # ex) git push origin main v2.0.1
 ```
 
+<br>
 <br>
 
 ## git fetch
@@ -35,6 +37,7 @@ git fetch --prune
 ``` 
 
 </br>
+<br>
 
 ## git remote
 
@@ -77,6 +80,7 @@ git push origin
 2. `Xcode` 상에서 `push` 할 경우 특정 저장소에만 푸시되는걸로 보이는데, 터미널 상에서 `git push origin` 명령을 사용하면 동시에 푸시된다.
 
 
+<br>
 <br>
 
 ## git rm
@@ -121,19 +125,19 @@ git commit -m "applying .gitignore"
 ```
 
 <br>
-
-## Git Conflict
-깃 충돌이 일어났을 때, 터미널 상에서 해결하기 위한 유용한 커맨드를 소개한다.
-
-**git reflog**  
-![Git Reflog](../Resource/Image/Command/imgGitReflog.png)  
-*Gif Reflog*  
-
-> 최근 커밋부터 커밋 번호를 출력한다.
-
 <br>
 
-## Git Log
+## git reflog 
+
+### 가장 최근 커밋 부터 커밋 태그 및 메시지를 표시한다
+```bash 
+git reflog
+```  
+
+<br>
+<br>
+
+## git log
 
 ### 특정 파일의 변경 로그 확인
 
@@ -151,6 +155,8 @@ git log -S function_name -p
 # ex) git log -S AppDelegate -p
 ```
 
+<br>
+<br>
 
 ## git ignore
 ### Configs 폴더를 유지하면서, 아래 폴더와 파일은 커밋하지 않는 방법
