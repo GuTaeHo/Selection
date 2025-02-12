@@ -18,6 +18,15 @@ git config --global core.quotepath false
 
 <br>
 
+## git push
+### Tag 와 함께 현재 브랜치 푸쉬
+```bash
+git push origin main {태그명}
+# ex) git push origin main v2.0.1
+```
+
+<br>
+
 ## git fetch
 
 remote 에서 제거되었지만 local 에 브랜치가 남아있을 때, local 브랜치를 제거하는 방법(단, 원격지와 동일한 브랜치는 유지됨)
@@ -140,4 +149,19 @@ git log -S function_name
 ```bash
 git log -S function_name -p
 # ex) git log -S AppDelegate -p
+```
+
+
+## git ignore
+### Configs 폴더를 유지하면서, 아래 폴더와 파일은 커밋하지 않는 방법
+
+```bash
+# Configs 디렉토리 하위 모든 파일 무시
+Configs/* 
+# Configs 디렉토리만 추적
+!Configs/
+
+# 빈 폴더는 git 에서 추적하지 않음, .gitkeep 파일 생성 후 Configs 디렉토리 추적
+touch Configs/.gitkeep
+!Configs/.gitkeep (.gitkeep 파일은 추적함)
 ```
