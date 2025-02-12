@@ -72,6 +72,24 @@ git push origin
 
 ## git rm
 
+### 원격 저장소와 로컬 저장소에 있는 파일을 삭제
+```bash
+git rm [File Name]
+```
+
+<br>
+
+### 로컬 저장소에 있는 파일은 그대로 두고, 원격 저장소에 있는 파일을 삭제
+```bash
+git rm --cached [File Name]
+# App 디렉토리 아래의 AppDelegate.swift 파일 삭제 예시
+# ex) git rm --cached App/AppDelegate.swift
+# App 디렉토리 아래의 모든 파일 삭제
+# ex) git rm --cached -r App/
+```
+
+<br>
+
 ### .DS_Store 파일이 깃에 포함되는 문제
 1. 하위 모든 디렉토리의 .DS_Store 파일 일괄 제거
 ```bash
@@ -107,3 +125,19 @@ git commit -m "applying .gitignore"
 <br>
 
 ## Git Log
+
+### 특정 파일의 변경 로그 확인
+
+### 문자열과 일치하는 커밋 확인
+```bash
+git log -S function_name
+# ex) git log -S AppDelegate
+```
+
+<br>
+
+### 문자열과 일치하는 커밋의 내용과 함께 확인
+```bash
+git log -S function_name -p
+# ex) git log -S AppDelegate -p
+```
