@@ -1,23 +1,76 @@
 # Git Command
 
-### git config
-> 한글이 "\123" 형식으로 표현됨  
-> 한글은 git 에서 **일반적이지 않은(unusual) 문자**로 인식
+## git config
+### git config 목록 표시 
 
+```bash
+git config --list
+```
+
+<br>
+
+### 한글이 "\123" 형식으로 표시될 때
+한글은 git 에서 **일반적이지 않은(unusual) 문자**로 인식
 
 ```bash
 git config --global core.quotepath false
 ```
 
+<br>
+
+## git fetch
+
+remote 에서 제거되었지만 local 에 브랜치가 남아있을 때, local 브랜치를 제거하는 방법(단, 원격지와 동일한 브랜치는 유지됨)
+```bash
+git fetch --prune
+``` 
+
 </br>
-### git update
-> 원격지에 새로 생성된 브랜치가 있고, `git pull` 를 통해 로컬에 가져오려고 했지만 `git branch` 로 확인 해 봐도 브랜치가 보이지 않았다.
-> 원격지의 변경사항을 확인하기전엔 **git remote** 명령을 통해 원격지의 변경사항을 먼저 가져와야한다.
+
+## git remote
+
+### 보이지 않는 원격지 브랜치 갱신
+원격지에 새로 생성된 브랜치가 있고, `git pull` 를 통해 로컬에 가져오려고 했지만 `git branch` 로 확인 해 봐도 브랜치가 보이지 않았다.  
+원격지의 변경사항을 확인하기전엔 **git remote** 명령을 통해 원격지의 변경사항을 먼저 가져와야한다.
 ```bash
 git remote update
 // 그리고
 git pull
 ```
+
+<br>
+
+### 현재 연결된 remote 출력
+```bash
+git remote -v
+```
+
+<br>
+
+### Git 원격지 두 곳에 동시에 브랜치를 push 하는 방법
+github 와 gitlab 의 각각의 repository 가 있고,  
+한 번의 push 명령으로 두 브랜치 모두 적용하고 싶을 때
+
+```bash 
+# 기존 원격 주소 연결 및 별칭 추가
+git remote origin https://github.com/user/repository.git
+# 새로운 원격 주소 추가
+git remote set-url --add --push origin https://github.com/user/repository.git
+# 브랜치 푸시
+git push origin
+```
+
+<br>
+
+
+주의사항: 
+1. 맨 처음 set-url 옵션으로 url 을 지정할 경우, 기존에 있던 URL 이 대체되어버린다, 그럴 떄는 기존 url 을 한번더 set-url 로 지정하면 된다.
+2. `Xcode` 상에서 `push` 할 경우 특정 저장소에만 푸시되는걸로 보이는데, 터미널 상에서 `git push origin` 명령을 사용하면 동시에 푸시된다.
+
+
+<br>
+
+## git rm
 
 ### .DS_Store 파일이 깃에 포함되는 문제
 1. 하위 모든 디렉토리의 .DS_Store 파일 일괄 제거
@@ -42,7 +95,7 @@ git commit -m "applying .gitignore"
 
 <br>
 
-### Git Conflict
+## Git Conflict
 깃 충돌이 일어났을 때, 터미널 상에서 해결하기 위한 유용한 커맨드를 소개한다.
 
 **git reflog**  
@@ -50,3 +103,7 @@ git commit -m "applying .gitignore"
 *Gif Reflog*  
 
 > 최근 커밋부터 커밋 번호를 출력한다.
+
+<br>
+
+## Git Log
