@@ -140,9 +140,3 @@ ex) 테스트 플라이트 업로드(upload_to_testflight)
 ```
 fastlane action upload_to_testflight
 ```
-
-
-
-
-
-## 참고

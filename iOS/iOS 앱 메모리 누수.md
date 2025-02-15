@@ -1,4 +1,4 @@
-## iOS 앱 메모리 누수
+# iOS 앱 메모리 누수
 
   
 
@@ -6,9 +6,9 @@
 2. iOS 의 메모리 관리기법
 3. 강한참조와 약한참조, weak self 의 개념 (+ ARC)
 
-  
+<br>
 
-### 1. Escaping Closure 와 Closure Capture
+## 1. Escaping Closure 와 Closure Capture
 
 > 컴퓨터 프로그래밍 언어 디자인에서, **일급 객체**(first-class object) 또는 **일급 시민**이란 다른 객체들에 일반적으로 적용 가능한 연산을 모두 지원하는 객체를 가리킨다. 보통 함수에 인자로 넘기기, 수정하기, 변수에 대입하기와 같은 연산을 지원할 때 일급 객체라고 한다.
 
@@ -26,7 +26,7 @@ let closure: () -> String = {
 print(closure) // "Cocobean"
 ```
 
-  
+<br>
 
 **Escaping Closure & Closure Capture**
 
@@ -54,10 +54,10 @@ print(account.closure())	// Cocobean
 ```
 
   
-
+<br>
   
 
-### 2. iOS 의 메모리 관리기법
+## 2. iOS 의 메모리 관리기법
 
 iOS 앱은 ARC(Auto Reference Counting) 라는 방식으로 메모리를 관리한다.
 
@@ -68,10 +68,10 @@ iOS 앱은 ARC(Auto Reference Counting) 라는 방식으로 메모리를 관리�
 이는 앱의 컴파일단계에서 인스턴스의 할당(사용), 해제(더 이상 사용되지않음)에 대한 여부를 **자동으로** 코드 사이에 집어넣어 특정 시점에 더 이상 참조되지 않는다면 인스턴스를 제거하는 방식으로 동작한다.
 
   
-
+<br>
   
 
-### 3. weak self 의 개념 (+ ARC)
+## 3. weak self 의 개념 (+ ARC)
 
 >  swift 에서는 변수선언 시 기본적으로 강하게(strong) 참조하며, weak 키워드를 사용하면 약하게 참조한다.
 
@@ -83,6 +83,7 @@ iOS 앱은 ARC(Auto Reference Counting) 라는 방식으로 메모리를 관리�
 함수가 **종료되어도 사라지지않는다.** 만약 이 때 클로저 내부에서 외부에 있는 변수를 참조하면 문제가 발생한다.
 예시를 보자.
 
+<br>
   
 
 ```swift
@@ -108,13 +109,15 @@ class FooViewController: UIViewController {
 }
 ```
 
-  
+<br>
+
 
 위 코드에선 뷰 컨트롤러가 dismiss() 되어도 클로저 내부의 **강한참조**로 인해 "FooViewController deinit" 가 출력되지않는다.
 
 해결방법은 아래와 같다.
 
-  
+<br>
+
 
 ```swift
 ...
@@ -125,7 +128,7 @@ closure = { [weak self] in
 ...
 ```
 
-  
+<br>
 
 왜 이런일이 발생한 것일까? 
 위 코드를 예로들어 ARC 방식을 설명하자면,
@@ -145,7 +148,7 @@ closure = { [weak self] in
 weak 키워드를 사용해 closure 내부에서 FooViewController 에 대해 약하게(weak) 참조함으로써 참조 카운트를 올리지 않는다면 정상적으로 deinit() 이 호출되며 뷰 컨트롤러가 메모리에서 해제된다.
 
   
-
+<br>
   
 
 ## 참고

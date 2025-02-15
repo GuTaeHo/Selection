@@ -97,6 +97,24 @@ rm -rf ~/.swiftpm
 
 <br>
 
+### Package 추가 시 에러가 발생할 때
+> Xcode > File > Add Package Dependencies 후 설치 시 아래 에러 발생  
+> 에러 내용: skipping cache due to an error the repository could not be found
+
+<br>
+
+**해결 방법 1)**
+- DerivedData 를 날리고 재시도한다.
+
+**해결 방법 2)**
+- Xcode 를 완전히 종료한 다음 아래 명령어를 실행한다
+
+    ```bash
+    defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+    ```
+
+<br>
+
 ### 빌드 시간 표시
 ```
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
