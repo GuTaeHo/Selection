@@ -141,6 +141,7 @@ rm -rf ~/.swiftpm
 **해결 방법 1)**
 1. Xcode > File > Packages > Update to Last Package Versions 실행
 2. **Xcode 를 완전히 끄고 다시 실행**
+3. `1` 다시 실행
 
 <br>
 
