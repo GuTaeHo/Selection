@@ -18,7 +18,18 @@ Alt + Command + t
 
 <br>
 
-## 설정
+## 빌드
+### 빌드 시간 표시
+```
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+rm -rf ~/Library/Developer/Xcode/DerivedData
+``` 
+
+위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
+
+<br>
+
+## 디버깅
 
 ### 디버그 연결중단 개선
 
@@ -51,6 +62,8 @@ settings set target.experimental.swift-enable-cxx-interop false
 3. Xcode 를 재실행한다.
 
 <br>
+
+## Git
 
 ### Git ssh 연결
 1. 키 생성 명령어 입력
@@ -89,6 +102,8 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 
 <br>
 
+## Swift Package
+
 ### SPM 패키지 캐시 완전히 날려버리는 방법
 ```
 rm -rf ~/Library/Developer/Xcode/DerivedData
@@ -117,13 +132,15 @@ rm -rf ~/.swiftpm
 
 <br>
 
-### 빌드 시간 표시
-```
-defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
-rm -rf ~/Library/Developer/Xcode/DerivedData
-``` 
+### 높은 버전 Package 가 내려받아지지 않을 때
+> branch 를 지정한 패키지의 높은 버전이 Git 에 올라와 있지만,  
+> 프로젝트에서 이전 버전의 버전만 보고있음
 
-위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
+<br>
+
+**해결 방법 1)**
+1. Xcode > File > Packages > Update to Last Package Versions 실행
+2. **Xcode 를 완전히 끄고 다시 실행**
 
 <br>
 
