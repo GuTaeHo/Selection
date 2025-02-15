@@ -65,6 +65,17 @@ settings set target.experimental.swift-enable-cxx-interop false
 
 ## Git
 
+### 머지 충돌 1
+> 현재 커밋된 작업내용과 다른 브랜치의 작업내용이 충돌됐지만,  
+경로가 변경되거나 파일이 삭제되어 Xcode 상에서 확인이 불가능하지만 머지도 불가능할 때
+
+<br>
+
+1. Xcode 병합 편집기 상태를 그대로 둔 상태로 Visual Studio Code 실행
+2. 프로젝트를 열고 좌측 소스 제어 탭 열기
+3. 취소선으로 그어진 파일 "+" 버튼 클릭
+4. `현재 버전 유지` 클릭 후 커밋
+
 ### Git ssh 연결
 1. 키 생성 명령어 입력
 ```bash
