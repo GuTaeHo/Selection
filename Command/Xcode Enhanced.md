@@ -132,16 +132,17 @@ rm -rf ~/.swiftpm
 
 <br>
 
-### 높은 버전 Package 가 내려받아지지 않을 때
-> branch 를 지정한 패키지의 높은 버전이 Git 에 올라와 있지만,  
+### 높은 버전 Package 가 내려받아지지 않을 때(테스트 환경: Xcode 16.2)
+> 패키지의 높은 버전이 Git 에 올라와 있지만,  
 > 프로젝트에서 이전 버전의 버전만 보고있음
+
+ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.0.4` 를 보고있음
 
 <br>
 
-**해결 방법 1)**
-1. Xcode > File > Packages > Update to Last Package Versions 실행
-2. **Xcode 를 완전히 끄고 다시 실행**
-3. `1` 다시 실행
+**해결 방법**
+1. **Xcode 끄고 다시 실행**
+2. Xcode > File > Packages > Update to Last Package Versions 실행
 
 <br>
 
