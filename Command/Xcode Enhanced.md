@@ -128,7 +128,7 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 
 </br>
 
-## Xcode Simulator & Previews
+## Xcode Simulator
 
 ### Preview 시뮬레이터 디바이스 삭제
 
@@ -161,6 +161,22 @@ xcrun simctl delete unavailable
 ### Playground 파일 제거
 
 `/Users/gutaeho/Library/Developer` 아래 경로의 **XCPGDevices** 디렉토리 제거
+
+</br>
+
+## Xcode Previews
+
+### iOS 17 미만 지원 타겟에서 Preview 를 사용하는 방법
+
+> Xcode 15 부터 지원하는 Preview 기능은 iOS 17 이상부터 지원되는듯하다.  
+> 기존의 플랫폼을 지원해야하는 레거시 프로젝트에서는 `@available` 어노테이션을 사용하면 미리보기가 효과적으로 동작한다.
+
+```swift
+@available(iOS 17, *)
+#Preview("Preview 테스트") {
+    // TODO: 미리보기 뷰
+}
+```
 
 </br>
 
