@@ -7,7 +7,7 @@
 ```bash
 brew update         # 패키지 최신정보 가져옴
 brew outdated       # 현재 설치된 패키지 중 업데이트 가능한 패키지 표시
-brew upgrade        # outdated 명령에서 나열된 패키지 업그레이드
+brew upgrade        # outdated 명령에서 나열된 패키지 업그레이드
 ```
 
 ##### 패키지 설치

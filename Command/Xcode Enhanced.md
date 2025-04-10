@@ -2,7 +2,7 @@
 
 Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법 정리
 
-<br>
+</br>
 
 ## 단축키
 
@@ -19,20 +19,20 @@ Command + Shift + j
 Alt + Command + t
 ```
 
-<br>
+</br>
 
 ## 빌드
 
 ### 빌드 시간 표시
 
-```
+```bash
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
 rm -rf ~/Library/Developer/Xcode/DerivedData
 ```
 
 위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
 
-<br>
+</br>
 
 ## 디버깅
 
@@ -72,7 +72,7 @@ settings set target.experimental.swift-enable-cxx-interop false
 
 3. Xcode 를 재실행한다.
 
-<br>
+</br>
 
 ## Git
 
@@ -81,7 +81,7 @@ settings set target.experimental.swift-enable-cxx-interop false
 > 현재 커밋된 작업내용과 다른 브랜치의 작업내용이 충돌됐지만,  
 경로가 변경되거나 파일이 삭제되어 Xcode 상에서 확인이 불가능하지만 머지도 불가능할 때
 
-<br>
+</br>
 
 1. Xcode 병합 편집기 상태를 그대로 둔 상태로 Visual Studio Code 실행
 2. 프로젝트를 열고 좌측 소스 제어 탭 열기
@@ -126,63 +126,79 @@ git remote -v
 git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 ```
 
-<br>
+</br>
 
-## Xcode Simulator & Previews
+## Xcode Simulator
 
 ### Preview 시뮬레이터 디바이스 삭제
 
-```
+```bash
 xcrun simctl --set previews delete all
 ```
 
-<br>
+</br>
 
 `/Users/gutaeho/Library/Developer/Xcode/UserData/Previews/Simulator Devices` 아래 경로의 시뮬레이터를 모두 제거
 
-<br>
+</br>
 
 ### 현재 설치된 모든 시뮬레이터 목록
 
-```
+```bash
 xcrun simctl list devices
 ```
 
-<br>
+</br>
 
 ### 비활성화 상태의 모든 시뮬레이터 제거
 
-```
+```bash
 xcrun simctl delete unavailable
 ```
 
-<br>
+</br>
 
 ### Playground 파일 제거
 
 `/Users/gutaeho/Library/Developer` 아래 경로의 **XCPGDevices** 디렉토리 제거
 
-<br>
+</br>
+
+## Xcode Previews
+
+### iOS 17 미만 지원 타겟에서 Preview 를 사용하는 방법
+
+> Xcode 15 부터 지원하는 Preview 기능은 iOS 17 이상부터 지원되는듯하다.  
+> 기존의 플랫폼을 지원해야하는 레거시 프로젝트에서는 `@available` 어노테이션을 사용하면 미리보기가 효과적으로 동작한다.
+
+```swift
+@available(iOS 17, *)
+#Preview("Preview 테스트") {
+    // TODO: 미리보기 뷰
+}
+```
+
+</br>
 
 ## Swift Package
 
 ### SPM 패키지 캐시 완전히 날려버리는 방법
 
-```
+```bash
 rm -rf ~/Library/Developer/Xcode/DerivedData
 rm -rf ~/Library/Caches/org.swift.swiftpm
 rm -rf ~/Library/org.swift.swiftpm
 rm -rf ~/.swiftpm
 ```
 
-<br>
+</br>
 
 ### Package 추가 시 에러가 발생할 때
 >
 > Xcode > File > Add Package Dependencies 후 설치 시 아래 에러 발생  
 > 에러 내용: skipping cache due to an error the repository could not be found
 
-<br>
+</br>
 
 **해결 방법 1)**
 
@@ -196,7 +212,7 @@ rm -rf ~/.swiftpm
     defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
     ```
 
-<br>
+</br>
 
 ### 높은 버전 Package 가 내려받아지지 않을 때(테스트 환경: Xcode 16.2)
 >
@@ -205,14 +221,14 @@ rm -rf ~/.swiftpm
 
 ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.0.4` 를 보고있음
 
-<br>
+</br>
 
 **해결 방법**
 
 1. **Xcode 끄고 다시 실행**
 2. Xcode > File > Packages > Update to Last Package Versions 실행
 
-<br>
+</br>
 
 ### 참고  
 
