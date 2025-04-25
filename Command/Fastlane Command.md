@@ -44,4 +44,19 @@ fastlane match development --readonly   # 개발용
 fastlane match appstore --readonly      # 배포용
 ```
 
-</br>
+<br>
+
+### 프로파일에 새로운 기기 등록
+```bash
+fastlane match development --force
+```
+
+<br>
+
+> `nuke` 는 프로파일을 완전히 제거 후, 새롭게 프로파일을 생성하는 반면,  
+>
+> `--force` 는 프로파일을 유지한 채로 갱신에 의의가 있다.
+>
+> `nuke` 는 기존 프로파일이 **완전히 제거**되어 동일한 프로파일을 사용하는 팀 전체에 영향이 갈 수 있기 때문에 주의해야한다.
+
+<br>
