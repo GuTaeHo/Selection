@@ -22,10 +22,13 @@
 
 ### 부제 2
 
-```bash
-fastlane match development --readonly   # 개발용
-fastlane match appstore --readonly      # 배포용
-```
+<!-- 일반 이미지 -->
+
+![Debugger lost connection](../Resource/Image/Command/imgLostConnectionDebugger.png)
+
+<!-- 사이즈 조정 가능 이미지 -->
+
+<img src="../Resource/Image/OS/imgSSHKnown_hosts1.png" width="50%">
 
 </br>
 </br>
