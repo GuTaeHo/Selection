@@ -280,6 +280,11 @@ Apple Watch 앱 개발 시 연결 단계에서 엄청 고생하는듯 하다...
 	
 </br>
 
+### 지속적으로 연결 시도... 전송 에러 발생 시
+Xcode 를 완전히 끈다음, 워치가 2.4Ghz 대역대의 네트워크에 잘 연결되어있는지 확인 후 다시 Xcode 켜서 빌드
+
+</br>
+
 ## 참고  
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
