@@ -230,10 +230,62 @@ ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.
 
 </br>
 
-### 참고  
+## Apple Watch
+Apple Watch 앱 개발 시 연결 단계에서 엄청 고생하는듯 하다...
+
+~~(환경 세팅만 하루 썼다...)~~
+
+아래 내용은 `Apple Developer Forums` 에서 확인한 정보 중 정상동작하는 부분만 정리해두었다.
+
+[포럼](#참고)은 아래 참고를 확인
+
+
+### 개발 전 선행 작업
+1. 아이폰, 맥, 워치 모두 같은 네트워크에 있어야함  
+	2.4Ghz, 5Ghz 대역대는 달라도 문제 없는 듯  
+	ex) 맥 = 5.0Ghz, 워치 = 2.4Ghz
+	
+	워치는 2.4Ghz 대역밖에 못 잡음
+	
+	라우터 아래 네트워크 환경에서 개발 권장,  
+	환경 상 어쩔 수 없이 제 3의 아이폰 핫스팟으로 연결해보려했으나 실패...
+
+2. Xcode 의 워치 시뮬레이터 설치 (개발하려면 무조건 설치하라고 표시해줌)
+
+3. 워치의 shared cache symbols 를 가져오기
+	(symbols 를 가져오기 전 워치 시뮬레이터가 선행 설치되어 있어야함)
+	설치되어 있지 않다면 Device Manager 에서 연결되지 않았다고 지속적으로 표시
+
+- shared cache symbols 은 워치가 잠금이 풀려있지 않아도 네트워크에 연결되어있고,  
+	shared cache symbols 을 가져올 수 있다.  
+    이 과정이 상당히 오래(약 10 ~ 15분, 총 2.2GB, 2MB/s) 걸린다. **기다리자**
+
+- 워치용 앱을 개발할 때는 아이폰을 맥과 유선 연결하는 것을 권장(필수적일 수도 있음)
+
+</br>
+
+### Xcode 에서 아이폰만 잡히고, 워치가 보이지 않을 때 (Xcode 16.3 기준 정상동작 확인)
+
+**반드시 모든 순서를 따라야 정상동작**
+
+1. Xcode 에서 Watch 와 iPhone 페어링 해제
+2. Xcode 종료 및 iPhone 연결 해제
+3. 두 기기에서 신뢰할 수 있는 컴퓨터 제거
+4. 개발자 모드 비활성화
+5. 두 기기 모두 재시동
+6. Finder 를 사용해 iPhone 연결 및 컴퓨터 신뢰
+7. Xcode 를 열고 iPhone 페어링(다시 신뢰)
+8. Watch 와 iPhone 에서 개발자 모드 활성화
+9. 작동
+	
+</br>
+
+## 참고  
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
 
 [디버거 연결 해제](https://forums.developer.apple.com/forums/thread/681037)
 
 [git push 를 할 때 마다 인증 요청 문제](https://stackoverflow.com/questions/53879986/xcode-10-1-push-to-github-using-ssh-key)
+
+[Apple Watch cannot reconnect](https://developer.apple.com/forums/thread/734694?page=3)
