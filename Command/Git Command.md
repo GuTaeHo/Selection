@@ -35,11 +35,23 @@ git push origin main {태그명}
 
 ## git fetch
 
-remote 에서 제거되었지만 local 에 브랜치가 남아있을 때, local 브랜치를 제거하는 방법(단, 원격지와 동일한 브랜치는 유지됨)
+### Remote 에서 제거된 Local 브랜치 제거하기
 
 ```bash
 git fetch --prune
 ``` 
+
+</br>
+</br>
+
+## git stash
+
+### 특정 파일만 스태시하기
+
+```bash
+git stash -m "스태시 명" [파일명]
+# git stash -m "Test: 결제 수단 강제 오픈" ~/example/MainViewController.swift
+```
 
 </br>
 </br>
