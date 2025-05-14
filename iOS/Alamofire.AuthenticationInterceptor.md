@@ -6,7 +6,8 @@ API 서버에 접근하여 데이터를 받아오기 위해서 일반적으로 �
 로그인(토큰 재발행)을 자동화하기 위해서 API 요청 후 HTTP 상태코드를 받아 저장된 정보로 재로그인을 시도하는 방법도 있겠지만, `Alamofire` 에서 제공하는 `AuthenticationInterceptor` 를 사용하는 방법을 알아보자.
 
 
-> **AuthenticationCredential & Authenticator** 프로토콜을 채택한 두 클래스를 생성자로 받아 헤더 토큰 추가, 만료 검사, 재 발행 등 수행.
+> **AuthenticationCredential & Authenticator** 
+프로토콜을 채택한 두 클래스를 생성자로 받아 헤더 토큰 추가, 만료 검사, 재 발행 등 수행.
 
 DataRequest 의 intercepter 인자에 추가하여 기능 실행가능.
 
