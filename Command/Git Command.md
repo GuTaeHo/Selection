@@ -49,8 +49,8 @@ git fetch --prune
 ### 특정 파일만 스태시하기
 
 ```bash
-git stash -m "스태시 명" [파일명]
-# git stash -m "Test: 결제 수단 강제 오픈" ~/example/MainViewController.swift
+git stash push -m "스태시 명" [파일명]
+# git stash push -m "Test: 결제 수단 강제 오픈" ~/example/MainViewController.swift
 ```
 
 </br>
