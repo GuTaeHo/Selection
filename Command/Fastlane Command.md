@@ -111,8 +111,41 @@ api_key = app_store_connect_api_key(
     duration: 1200,
     in_house: false
 )
-pilot(api_key: api_key)
+
+pilot(
+    api_key: api_key,
+    ipa: "#{ipa_path}/#{ipa_file_name}", # 업로드할 ipa 파일 위치
+    changelog: "fastlane 테스트",
+    skip_waiting_for_build_processing: true, # App Store Connect 업로드 완료까지 대기 스킵 유무
+)
 ```
+
+</br>
+
+## .xcconfig 로 관리되는 프로젝트
+
+앱 확장(App Extension) 을 구현하고 있는 앱이나 다양한 빌드 환경을 사용 중인 앱일 경우, 버전 동기화를 위해 `.xcconfig` 를 많이 사용할 것이다
+
+App Version, Build Version 등을 xcconfig 에서 관리중일 경우, 
+기존 `update_build_number` 와 `increment_build_number` 는 적합하지 않을 수 있는데
+
+fastlane 이 Target > Build Settings 의 값을 .xcconfig 의 참조 값이 아닌 버전 상수로 변경하기 떄문이다.
+
+```bash
+# 변경 전
+Current Project Version = ${BUILD_VERSION}
+Marketing Version = ${APP_VERSION}
+
+# 변경 후
+Current Project Version = 2
+Marketing Version = 2.0.1
+```
+
+이렇게되면 .xcconfig 에서 버전 관리가 동작하지 않게된다.
+
+이 때는 `.xcconfig` 파일을 읽어들여 버전을 수정하는 스크립트를 만들어 `lane` 이 실행될 때 호출해주면 된다
+
+[XCConfigManager](#XCConfigManager) 에서는 `Key` 에 해당하는 `Value`를 업데이트 할 수 있는 스크립트가 있다.
 
 
 </br>
@@ -173,3 +206,76 @@ fastlane match development --force
 > `nuke` 는 기존 프로파일이 **완전히 제거**되어 동일한 프로파일을 사용하는 팀 전체에 영향이 갈 수 있기 때문에 주의해야한다.
 
 <br>
+<br>
+
+
+## 참고
+
+### XCConfigManager
+
+```ruby
+class XCConfigManager 
+  # xcconfig 파일 경로 (기본값: "../Config/Shared.xcconfig")
+  def initialize(path = "../Config/Shared.xcconfig")
+    @path = path
+  end
+
+  def get_xcconfig_value(key)
+    lines = File.readlines("#{@path}")
+
+    annotation_removed_lines = lines.compact do |line|
+      # 주석 라인 제거
+      if !line.strip.start_with?("//")
+        line
+      end
+    end
+
+    value = annotation_removed_lines.find { |line| line.strip.start_with?("#{key}") }
+    return value.gsub(/\s+/, "").split("=")[1]
+  end
+
+  def update_xcconfig(key, new_value)
+    lines = File.readlines("#{@path}")
+
+    updated_lines = lines.map do |line|
+      if line.strip.start_with?("#{key} =")
+        "#{key} = #{new_value}\n"
+      else
+        line
+      end
+    end
+
+    File.write("#{@path}", updated_lines.join)
+
+    puts "\"#{key}\" 업데이트: #{get_xcconfig_value(key)}"
+  end
+
+
+=begin
+  App Version 을 증가시킵니다
+
+  - Parameters: type = 0 (major), 1 = (minor), 2 = (patch)
+  - Note: 상위 버전이 증가될 경우, 하위 버전은 0으로 초기화 됩니다.
+  - Important: 빌드 버전은 항상 `0` 으로 초기화 됩니다
+=end
+  def increment_app_version(type)
+    app_version = get_xcconfig_value("APP_VERSION")
+
+    major_version = app_version.split(".")[0].to_i
+    minor_version = app_version.split(".")[1].to_i
+    patch_version = app_version.split(".")[2].to_i
+    new_version = ""
+
+    if type == 0
+      new_version = "#{major_version + 1}" + "." + "0" + "." + "0"
+    elsif type == 1
+      new_version = "#{major_version}" + "." + "#{minor_version + 1}" + "." + "0"
+    else
+      new_version = "#{major_version}" + "." + "#{minor_version}" + "." + "#{patch_version + 1}"
+    end
+
+    update_xcconfig("APP_VERSION", new_version)
+    update_xcconfig("BUILD_VERSION", 0)
+  end
+end
+```
