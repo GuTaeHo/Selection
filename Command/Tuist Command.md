@@ -1,5 +1,5 @@
 # Tuist Command
-tuist 에서 자주 사용되는 명령어 정리
+`tuist` 에서 자주 사용되는 명령어 정리
 
 
 <br>
@@ -24,7 +24,7 @@ tuist install
 
 ### 종속성 업데이트
 새로운 종속성을 내려받는다.
-> `pod update` 와 동일하게 캐싱된 버전을 지우고, 완전히 새로운 종속성을 재 설치한다.
+> `pod update` 와 동일하게 캐싱된 버전을 지우고, 완전히 새로운 종속성을 설치한다.
 
 ```base
 tuist install --update

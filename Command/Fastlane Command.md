@@ -129,7 +129,7 @@ pilot(
 App Version, Build Version 등을 xcconfig 에서 관리중일 경우, 
 기존 `update_build_number` 와 `increment_build_number` 는 적합하지 않을 수 있는데
 
-fastlane 이 Target > Build Settings 의 값을 .xcconfig 의 참조 값이 아닌 버전 상수로 변경하기 떄문이다.
+fastlane 이 Target > Build Settings 의 값을 .xcconfig 의 참조 값이 아닌 버전 상수(ex: 1.2.0)로 변경하기 떄문이다.
 
 ```bash
 # 변경 전
@@ -141,11 +141,12 @@ Current Project Version = 2
 Marketing Version = 2.0.1
 ```
 
-이렇게되면 .xcconfig 에서 버전 관리가 동작하지 않게된다.
+이렇게되면 .xcconfig 에서 **버전 관리가 동작하지 않게된다.**
 
 이 때는 `.xcconfig` 파일을 읽어들여 버전을 수정하는 스크립트를 만들어 `lane` 이 실행될 때 호출해주면 된다
 
 [XCConfigManager](#XCConfigManager) 에서는 `Key` 에 해당하는 `Value`를 업데이트 할 수 있는 스크립트가 있다.
+
 
 
 </br>
@@ -255,8 +256,8 @@ class XCConfigManager
   App Version 을 증가시킵니다
 
   - Parameters: type = 0 (major), 1 = (minor), 2 = (patch)
-  - Note: 상위 버전이 증가될 경우, 하위 버전은 0으로 초기화 됩니다.
-  - Important: 빌드 버전은 항상 `0` 으로 초기화 됩니다
+  - Note: 상위 버전이 증가될 경우, 하위 버전은 0으로 초기화 됩니다. (ex: 1.2.2 -> 1.3.0)
+  - Important: 호출 시, 빌드 버전은 항상 `0` 으로 초기화 됩니다
 =end
   def increment_app_version(type)
     app_version = get_xcconfig_value("APP_VERSION")
