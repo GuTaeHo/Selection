@@ -58,13 +58,18 @@ PHPPhotoLibrary.requestAutorization(for: .readWrite) { status in
 
 </br>
 
-### 앨범목록에서 앨범에셋 가져오기
+### 앨범목록에서 앨범 에셋 가져오기
 
 </br>
 
-### 앨범에서 사진에셋 가져오기
+### 앨범에서 사진 에셋 가져오기
 
 </br>
+
+### 이미지 요청 시 주의사항
+
+- targetSize
+- reuseable cell
 
 ### 사진 앱 변경 사항 옵져빙
 
