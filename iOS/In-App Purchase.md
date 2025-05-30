@@ -2,7 +2,7 @@
 별도의 결제망이나 외부 프로그램 없이, 앱 내부에서 상품을 구매하는 방식을 말함
 
 
-### 가이드 라인
+## 가이드 라인
 인-앱 결제 가이드 라인에 따르면, 실물 거래가 아닌 디지털 상품 거래 시 
 
 반드시 Storekit 을 통한 결제가 이뤄져야함 그 이외는 허용되지않음. 
@@ -13,14 +13,14 @@ AppStore 의 프로모션 코드를 사용해야함
 
 <br>
 
-# StoreKit
+## StoreKit
 Apple 플랫폼에서 디지털 상품 및 서비스를 구매할 수 있게 
 
 제공하는 인-앱 결제(In-App Purchase) 프레임워크.
 
 <br>
 
-# Storekit 1 과 Storekit 2
+## Storekit 1 과 Storekit 2
 **Storekit1** 은 2009년 iOS 3 이 출시된 이래로 줄곧 사용되어 오다가
 
 WWDC 2021 에서 인-앱 구매를 위한 새로운 API 인 **Storekit2** 를 발표
