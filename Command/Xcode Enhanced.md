@@ -156,6 +156,65 @@ xcrun simctl delete unavailable
 
 ## Xcode Previews
 
+`Preview` 는 앱을 실행하지 않고 실시간으로 코드의 변경사항을 추적해 표시해주는 강력한 기능을 제공하지만
+
+종종 ~~자주~~ Preview 가 먹통이 되는 경우가 있다
+
+빌드 및 실행은 정상적으로 되지만, **Preview 만 동작**하지 않을 때 해결하는 방법을 소개한다.
+
+</br>
+
+### Cannot Preview in this file (패키지, 프레임워크 로딩 문제)
+KakaoSDK 나 Firebase 등 objc 기반으로 작성된 프레임워크를 사용중인 프로젝트에서 주로 발견되는 것으로 보인다.
+
+**로그**
+
+`CouldNotLoadInputStaticArchiveFile` 문구가 포함되어있다.
+
+**해결방법**
+
+`Xcode` -> `Editor` -> `Canvas` -> `Use Legacy Previews Execution` 체크
+
+</br>
+
+### Failed to build 
+프로젝트에서 정의된 메소드와 패키지(프레임워크)의 메소드 중복될 경우 발생한다
+
+앱을 빌드할 경우, 앱에 정의된 메소드가 우선순위가 높아서 문제가 없지만, 프리뷰에서는 모호하다는 에러가 표시된다.
+
+**앱**
+```swift
+// App
+extension Font {
+    static func custom(_ type: FontType, size: CGFloat) -> Font {
+        return .custom(type.rawValue, fixedSize: size)
+    }
+}
+```
+
+**패키지(프레임워크)**
+
+```swift
+// Framework
+extension Font {
+    static func custom(_ type: FontType, size: CGFloat) -> Font {
+        return .custom(type.rawValue, fixedSize: size)
+    }
+}
+```
+
+**로그**
+
+`Compiling failed: ambiguous use of 'font'` 가 포함되어있다
+
+**해결방법**
+
+패키지를 제거하거나, 패키지 의존도가 강할경우, 프로젝트의 메소드를 변경한다.
+
+
+
+</br>
+
 ### iOS 17 미만 지원 타겟에서 Preview 를 사용하는 방법
 
 > Xcode 15 부터 지원하는 Preview 기능은 iOS 17 이상부터 지원되는듯하다.  
