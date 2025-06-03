@@ -6,8 +6,6 @@ Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법
 
 ## 단축키
 
-###
-
 ```swift
 // 현재 화면 새로운 탭으로 열기
 Command + t
@@ -19,6 +17,7 @@ Command + Shift + j
 Alt + Command + t
 ```
 
+</br>
 </br>
 
 ## 빌드
@@ -32,6 +31,7 @@ rm -rf ~/Library/Developer/Xcode/DerivedData
 
 위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
 
+</br>
 </br>
 
 ## 디버깅
@@ -127,20 +127,9 @@ git remote set-url origin git@github.com:<RepoName>/<RepoName>.git
 ```
 
 </br>
+</br>
 
 ## Xcode Simulator
-
-### Preview 시뮬레이터 디바이스 삭제
-
-```bash
-xcrun simctl --set previews delete all
-```
-
-</br>
-
-`/Users/gutaeho/Library/Developer/Xcode/UserData/Previews/Simulator Devices` 아래 경로의 시뮬레이터를 모두 제거
-
-</br>
 
 ### 현재 설치된 모든 시뮬레이터 목록
 
@@ -163,6 +152,7 @@ xcrun simctl delete unavailable
 `/Users/gutaeho/Library/Developer` 아래 경로의 **XCPGDevices** 디렉토리 제거
 
 </br>
+</br>
 
 ## Xcode Previews
 
@@ -178,6 +168,19 @@ xcrun simctl delete unavailable
 }
 ```
 
+</br>
+
+### Preview 재설정(삭제)
+
+```bash
+xcrun simctl --set previews delete all
+```
+
+</br>
+
+`/Users/gutaeho/Library/Developer/Xcode/UserData/Previews/Simulator Devices` 아래 경로의 시뮬레이터를 모두 제거
+
+</br>
 </br>
 
 ## Swift Package
@@ -228,6 +231,7 @@ ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.
 1. **Xcode 끄고 다시 실행**
 2. Xcode > File > Packages > Update to Last Package Versions 실행
 
+</br>
 </br>
 
 ## Apple Watch
