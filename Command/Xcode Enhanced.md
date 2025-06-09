@@ -15,6 +15,9 @@ Command + Shift + j
 
 // 상단 바 고정
 Alt + Command + t
+
+// Organizer 열기
+Command + Option + Shift + O
 ```
 
 </br>
