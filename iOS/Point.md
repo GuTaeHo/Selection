@@ -52,6 +52,7 @@ iPhone X 부터 Retina HD Display 를 지원하기 시작하면서, 3배율이 �
 
 
 </br>
+</br>
 
 ### 정리
 다양한 화면 해상도에 적용하기 위해서 iOS 시스템에서 권장하는 옵션이다.
@@ -62,6 +63,7 @@ iPhone X 부터 Retina HD Display 를 지원하기 시작하면서, 3배율이 �
 Point > Pixel 변환 도표 링크 - https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
 
 </br>
+</br>
 
 
 ## 참고
@@ -69,6 +71,8 @@ Point > Pixel 변환 도표 링크 - https://www.paintcodeapp.com/news/ultimate-
 - https://dev-dream-world.tistory.com/189 (Pixel 과 Point: Scale Factor 도표 포함)
 - https://developer.apple.com/documentation/uikit/uiscreen/1617836-scale (scale)
 - https://ko.wikipedia.org/wiki/%EC%8A%A4%EC%BC%80%EC%9D%BC_%ED%8C%A9%ED%84%B0 (위키백과, scale factor)
+
+</br>
 
 ## 이미지 출처
 - https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions

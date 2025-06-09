@@ -1,6 +1,6 @@
 # Xcode Enhanced
 
-Xcode 를 조금 더 생산적이며 효율적으로 사용할 수 있는 방법 정리
+Xcode 를 사용하면서 만난 문제점 및 해결방법 & 조금 더 생산적이며 효율적으로 사용할 수 있는 방법 정리
 
 </br>
 
@@ -33,6 +33,54 @@ rm -rf ~/Library/Developer/Xcode/DerivedData
 ```
 
 위 명령 수행 후, Run Device 선택 창에 빌드 시간 표시됨
+
+<br>
+
+### 다중 타겟 프로젝트의 Build Settings 버전 관리 방법
+
+여러 플랫폼을 지원하거나, `App Extension` 을 구현한 프로젝트일 경우 타겟이 2개 이상일텐데,
+`App Extension` 은 타겟 앱과 버전이 동일해야하며 (컴파일 경고), 
+플랫폼간 버전을 통일해야하는 경우 매번 모든 타겟의 버전을 변경해야한다.
+
+Xcode 의 `Build Settings` 는 프로젝트 단위에 설정된 값을 타겟이 참조할 수 있는데, 
+이를 활용하면 프로젝트 단위 값만 변경하는 것으로 손쉽게 변경할 수 있다.
+
+</br>
+
+**프로젝트 단위 설정**
+
+xcode > project > build settings 로 이동 후, 검색창에 `version` 을 입력하면 아래와 같이 표시된다. 
+
+![Build Settings From Project](../Resource/Image/Command/imgProjectBuildSettings.png)
+
+`Current Project Version` 은 빌드 버전을 의미하고,
+`Marketing Version` 은 앱스토어 상에 표시되는 앱 버전을 의미한다.
+
+빌드 버전과 앱 버전을 원하는 대로 설정한 다음 타겟 설정으로 이동 한다
+
+</br>
+
+**타겟 단위 설정**
+
+좌측 타겟을 누르면 타겟 레벨의 값이 표시된다
+
+![Build Settings From Target](../Resource/Image/Command/imgTargetBuildSettings.png)
+
+위 사진은 타겟에 별도로 할당된 값이 없는 상태다. 이 경우 컴파일 시 프로젝트 단위의 값을 참조한다.
+
+![Build Settings From Target](../Resource/Image/Command/imgTargetBuildSettingsCustom.png)
+
+위 사진은 타겟에 할당된 값이 있어, 해당 타겟이 빌드될 경우 프로젝트의 값은 무시된다.
+
+할당된 값을 클릭한 뒤, 삭제 후 타겟을 다시 빌드하면 프로젝트 단위의 값을 참조한다.
+
+</br>
+
+**유의사항**
+Build Settings 의 값을 공백으로 넣더라도 값이 `""` 으로 할당되는 경우가 있다.
+이 때는 수정될 필드를 한번 누르고 `back space` 나 `delete` 를 누르면된다.
+(xcode16 기준) 값이 할당되었을 경우, 둥근 초록색 박스가 표시되지만, 
+값이 없을 경우 배경과 동일한 색상으로 표시된다.
 
 </br>
 </br>
@@ -80,8 +128,8 @@ settings set target.experimental.swift-enable-cxx-interop false
 ## Git
 
 ### 머지 충돌 1
->
-> 현재 커밋된 작업내용과 다른 브랜치의 작업내용이 충돌됐지만,  
+
+현재 커밋된 작업내용과 다른 브랜치의 작업내용이 충돌됐지만,  
 경로가 변경되거나 파일이 삭제되어 Xcode 상에서 확인이 불가능하지만 머지도 불가능할 때
 
 </br>
@@ -90,6 +138,8 @@ settings set target.experimental.swift-enable-cxx-interop false
 2. 프로젝트를 열고 좌측 소스 제어 탭 열기
 3. 취소선으로 그어진 파일 "+" 버튼 클릭
 4. `현재 버전 유지` 클릭 후 커밋
+
+</br>
 
 ### Git ssh 연결
 

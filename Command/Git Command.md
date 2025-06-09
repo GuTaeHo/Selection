@@ -56,6 +56,16 @@ git stash push -m "스태시 명" [파일명]
 </br>
 </br>
 
+## git restore
+
+### 스테이지된 모든 파일 내리기
+
+```bash
+git restore --staged .
+```
+
+</br>
+
 ## git remote
 
 ### 보이지 않는 원격지 브랜치 갱신
