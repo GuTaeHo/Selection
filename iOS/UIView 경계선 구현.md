@@ -11,13 +11,11 @@ The default value of this property is 0.0.
 수신자의 컨텐츠와 sublayer 들과 합성되며, cornerRaduis 속성의 효과를 포함한다.
 기본 값은 0이다.
 
+</br>
 
-
-> **수신자의 컨텐츠와 sublayer 들과 합성되며...**
-> ParentView 와 SubView 가 있고, ParentView 에 경계선이 표시되고 있을 때, SubView가 경계선과 동일한 위치에 
-> 있는 경우 경계선이 항상 SubView 위를 지나감
-
-
+**수신자의 컨텐츠와 sublayer 들과 합성되며...**
+ParentView 와 SubView 가 있고, ParentView 에 경계선이 표시되고 있을 때, 
+SubView가 경계선과 동일한 위치에 있는 경우 경계선이 항상 SubView 위를 지나감
 
 해결 방법
 

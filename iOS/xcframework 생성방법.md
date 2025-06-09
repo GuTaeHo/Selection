@@ -15,8 +15,8 @@
 <br>
 
 ## xcframework 빌드
-> .xcodeproj 가 있는 디렉토리에서 아래 명령 실행
-> 루트 디렉토리에 `Build`, `Output` 디렉토리가 있는 상황을 가정
+.xcodeproj 가 있는 디렉토리에서 아래 명령 실행
+루트 디렉토리에 `Build`, `Output` 디렉토리가 있는 상황을 가정
 
 <br>
 
@@ -28,7 +28,8 @@ xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme Notific
 <br>
 
 ### 2. 시뮬레이터에서도 동작하도록 시뮬레이터용 xcarchive 생성 명령어 실행
-> 시뮬레이터 동작이 필요없을경우 생략
+
+시뮬레이터 동작이 필요없을경우 생략
 
 ```bash
 xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme NotificationServiceSupport -sdk iphonesimulator -destination "generic/platform=iOS Simulator" -archivePath ./Build/NotificationServiceSupport_simulator.xcarchive
@@ -37,10 +38,9 @@ xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme Notific
 <br>
 
 ### 3. xcframework 생성 명령어 실행
-> `iOS 기기용` .xcarchive, `iOS Simulator용` .xcarchive 두 파일을 하나의 `.xcframework` 로 생성한다
+
+`iOS 기기용` .xcarchive, `iOS Simulator용` .xcarchive 두 파일을 하나의 `.xcframework` 로 생성한다
 
 ```bash
 xcodebuild -create-xcframework -archive ./Build/NotificationServiceSupport.xcarchive -framework NotificationServiceSupport.framework -archive ./Build/NotificationServiceSupport_simulator.xcarchive -framework NotificationServiceSupport.framework -output ./Output/NotificationServiceSupport.xcframework
 ```
-
-
