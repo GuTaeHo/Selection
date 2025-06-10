@@ -13,12 +13,14 @@
 </br>
 
 **우선순위**
+
 `local` -> `global` -> `system` 순으로 우선순위가 정해지며,
 `local` 에 할당된 값이 없지만, `global` 에 할당된 정보가 있을경우, 그 값을 참조한다.
 
 </br>
 
 **주의사항**
+
 config 에 설정되는 **user.name** 은 `GitHub`의 사용자 이름이 **아니라** 
 깃 커밋 시 사용될 사용자 이름이다 혼동하지 않도록 유의
 
@@ -83,15 +85,15 @@ git config --global core.quotepath false
 
 ### Git Credential Helper (= Credential Manager)
 
-HTTPS 인증을 통해 클론을 수행할 때 깃은 자격 증명을 요구한다.
-클론에 성공하고, 디렉토리를 지우고 새로 클론할 때, 다시 인증 요청을 하지않고
-**즉시 클론** 되는 것을 볼 수 있는데, 이는 macOS/Linux 의 `Git Credential Helper` 때문이다.
-(Windows 는 `Git Credential Manager`)
+HTTPS 인증을 통해 클론을 수행할 때 깃은 자격 증명을 요구한다.  
+클론에 성공하고, 디렉토리를 지우고 새로 클론할 때, 다시 인증 요청을 하지않고  
+**즉시 클론** 되는 것을 볼 수 있는데, 이는 macOS/Linux 의 `Git Credential Helper` 때문이다.  
+(Windows 는 `Git Credential Manager`)  
+ 
+한 번 인증하는 순간 토큰 or 비밀번호가 저장되어 인증 요구가 없어진다.  
 
-한 번 인증하는 순간 토큰 or 비밀번호가 저장되어 인증 요구가 없어진다.
-
-인증 정보는 `macOS` 의 경우 **키체인**에, `Linux` 의 경우 일정시간동안(기본값: 15분)만 
-유지되는 메모리에 저장된다.
+인증 정보는 `macOS` 의 경우 **키체인**에, `Linux` 의 경우 일정시간동안(기본값: 15분)만  
+유지되는 메모리에 저장된다.  
 
 </br>
 
@@ -101,8 +103,8 @@ HTTPS 인증을 통해 클론을 수행할 때 깃은 자격 증명을 요구한
 git config --list
 ```
 
-(macOS 기준) 위 명령 수행 및 **credential.helper=osxkeychain** 항목이 있을경우,
-키체인에 이미 저장된 인증 정보가 있을 것이다.
+(macOS 기준) 위 명령 수행 및 **credential.helper=osxkeychain** 항목이 있을경우,  
+키체인에 이미 저장된 인증 정보가 있을 것이다.  
 
 **결과**
 ![Credential Helper](../Resource/Image/Command/imgGitCloneCredentialHelper.png)
