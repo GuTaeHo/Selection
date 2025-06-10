@@ -2,10 +2,62 @@
 
 ## git config
 
-### git config 목록 표시
+깃 은 여러 사용자 편의성을 위해 config 를 지원하는데, 크게 3종류로 구분한다
+
+`system` 은 해당 컴퓨터에 있는 모든 저장소에 적용된다. **저장 위치 (유닉스 기준): /etc/gitconfig**
+
+`global` 은 운영체제 사용자 폴더에 있는 모든 저장소에 적용된다. **저장 위치: ~/.gitconfig**
+
+`local` 은 저장소에 한정된다. **저장 위치: .git/config**
+
+</br>
+
+**주의사항**
+config 에 설정되는 **user.name** 은 `GitHub`의 사용자 이름이 **아니라** 
+깃 커밋 시 사용될 사용자 이름이다 혼동하지 않도록 유의
+
+</br>
+
+### git config 읽기
 
 ```bash
-git config --list
+git config --list # system, global, local 모두 표시
+git config --global --list # global 만 표시
+
+git config <name> # 설정된 이름 표시
+# ex) git config user.name
+```
+
+</br>
+
+### git config 쓰기
+
+범위 옵션을 주지 않을 경우 `local` 을 기준으로 값이 설정된다
+
+
+```bash
+git config user.name <name> # 유저 명 설정
+git config user.email <email> # 유저 이메일 설정
+# ex) git config user.email example.com
+
+
+git config --global user.name <name> # global 유저 명 설정
+# ex) git config --global user.name gutaeho
+
+```
+
+</br>
+
+### git config 지우기
+
+범위 옵션을 주지 않을 경우 `local` 을 기준으로 값이 설정된다
+
+```bash
+git config --unset user.name # 유저 명 제거 
+# ex) git config --unset --global user.name gutaeho
+
+git config --unset --global user.name # global 유저 명 제거 
+# ex) git config --unset --global user.name gutaeho
 ```
 
 </br>
@@ -17,6 +69,38 @@ git config --list
 ```bash
 git config --global core.quotepath false
 ```
+
+</br>
+</br>
+
+## git clone
+
+### Git Credential Helper (= Credential Manager)
+
+HTTPS 인증을 통해 클론을 수행할 때 깃은 자격 증명을 요구한다.
+클론에 성공하고, 디렉토리를 지우고 새로 클론할 때, 다시 인증 요청을 하지않고
+**즉시 클론** 되는 것을 볼 수 있는데, 이는 macOS/Linux 의 `Git Credential Helper` 때문이다.
+(Windows 는 `Git Credential Manager`)
+
+한 번 인증하는 순간 토큰 or 비밀번호가 저장되어 인증 요구가 없어진다.
+
+인증 정보는 `macOS` 의 경우 **키체인**에, `Linux` 의 경우 일정시간동안(기본값: 15분)만 
+유지되는 메모리에 저장된다.
+
+</br>
+
+**확인**
+
+```bash
+git config --list
+```
+
+(macOS 기준) 위 명령 수행 및 **credential.helper=osxkeychain** 항목이 있을경우,
+키체인에 이미 저장된 인증 정보가 있을 것이다.
+
+**결과**
+![Credential Helper](../Resource/Image/Command/imgGitCloneCredentialHelper.png)
+
 
 </br>
 </br>
