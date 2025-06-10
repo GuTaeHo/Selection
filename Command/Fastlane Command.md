@@ -167,16 +167,20 @@ type("development")
 username("test@example.com")  # 애플 이메일
 ```
 
-1. 기존 프로파일을 만료하고 신규 프로파일을 생성  
+</br>
+
+### 기존 프로파일을 만료하고 신규 프로파일 생성  
 
 ```bash
 fastlane match nuke development # 기존 프로파일 제거
 fastlane match development      # 신규 프로파일 생성
 ```
 
-1. 새로운 프로파일 컴퓨터에 설치
+</br>
 
-> 신규 프로파일 생성 시 **자동으로 설치**되지만, 만일 설치가 되지 않은 경우 아래 명령 실행
+### 새로운 프로파일 컴퓨터에 설치
+
+신규 프로파일 생성 시 **자동으로 설치**되지만, 만일 설치가 되지 않은경우 아래 명령 실행
 
 ```bash
 fastlane match development --readonly
@@ -193,21 +197,35 @@ fastlane match appstore --readonly      # 배포용
 
 <br>
 
-### 프로파일에 새로운 기기 등록
+### 기존 프로파일에 신규 기기 등록
+
+1. Apple Developer 사이트 접속
+2. Account > Certificates, Identifiers & Profiles > **Devices** 탭 클릭
+3. `+` 클릭 후, 등록될 신규 기기의 플랫폼과 디바이스 명, 디바이스 ID 추가  
+  디바이스 ID 는 Xcode 에 등록될 기기 연결 후,  
+  Xcode > Product > Destinations > Manage Run Destinations 의  
+  Identifier 뒷자리 (ex: `00001234-001234060A2300BC`) 를 넣어주면 된다
+4. 완료 후 **Profiles** 탭 클릭 후, 기존 프로파일 클릭
+5. `edit` 클릭 후, 방금 등록된 디바이스 선택 후 `save`
+6. 아래 명령 수행 (수정된 프로파일 다운로드)
+
 ```bash
-fastlane match development --force
+fastlane match development
 ```
 
-<br>
+</br>
+프로파일이 수정되면서, `fastlane` 은 기존 인증서가 만료됐음을 인지하고 갱신된 인증서를 자동으로 내려받는다
 
-> `nuke` 는 프로파일을 완전히 제거 후, 새롭게 프로파일을 생성하는 반면,  
->
-> `--force` 는 프로파일을 유지한 채로 갱신에 의의가 있다.
->
-> `nuke` 는 기존 프로파일이 **완전히 제거**되어 동일한 프로파일을 사용하는 팀 전체에 영향이 갈 수 있기 때문에 주의해야한다.
+</br>
 
-<br>
-<br>
+`nuke` 는 프로파일을 완전히 제거 후, 새롭게 프로파일을 생성하는 반면,  
+
+`--force` 는 프로파일을 유지한 채로 갱신한다는 차이점이 있다.
+
+`nuke` 는 기존 프로파일이 **완전히 제거**되어 동일한 프로파일을 사용하는 팀 전체에 영향이 갈 수 있기 때문에 주의해야한다.
+
+</br>
+</br>
 
 
 ## 참고
