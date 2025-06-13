@@ -26,7 +26,7 @@ URL 스킴이 앱에 등록되어있다는 가정하에 진행
 
 </br>
 
-서버에 업로드 된 웹 사이트의 javascript 코드 동작 방식은 아래와 같다  
+일반적인 URL Scheme 방식의 javascript 코드 동작 방식은 아래와 같다  
 
 
 1. href 명령을 통해 앱의 URL 스킴(ex: "myapp://myapp")을 직접 호출
@@ -59,9 +59,9 @@ URL 스킴이 앱에 등록되어있다는 가정하에 진행
 
 ## 유니버설 링크
 
-Apple 에서 출시한 `iOS 전용 딥링크`이며 `macOS`, `watchOS`에서도 사용함
+Apple 에서 출시한 `iOS 전용 딥링크`이며 `macOS`, `watchOS`에서도 사용할 수 있다
 
-iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단점을 보완한 방식
+iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단점을 보완한 방식이다
 
 </br>
 
@@ -69,12 +69,12 @@ iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단
 
 1. 사용자가 링크를 누른다
 
-    링크를 브라우저에 **직접 타이핑**할 경우, 즉시 이동하지않는다!
+    링크를 브라우저에 **직접 타이핑**할 경우, 즉시 이동하지않는다!  
     메시지나 카메라 앱 (QR 코드) 로 링크를 클릭해야 정상동작한다
 
     </br>
 
-    카카오 인앱 브라우저 동작 X
+    카카오톡에서 링크를 클릭 했을 때, 인앱 브라우저에서도 동작하지 않는다
 
     </br>
 
@@ -95,13 +95,20 @@ iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단
 iOS 13 이상 버전을 가정하고 진행, iOS 12 이하는 `AASA` 포맷이 약간 다름
 ```
 
+</br>
+
 **주의사항**
 
 - Content-Type이 application/json으로 전달되어야 한다.
 - AASA 파일은 확장자가 없다. apple-app-site-association.json으로 표기하지 않도록 주의.
 - `.well-known` 디렉토리 아래에 다른 디렉토리를 만들어 AASA 파일을 위치 시키지 말 것 (OS 가 인식하지 못함)
-- iOS 는 AASA 파일을 다운로드 한 후 캐싱처리하기 때문에, AASA 파일을 수정한 뒤, 반영되지 않을 수 도 있다  
-앱을 삭제하거나,  
+- iOS 는 AASA 파일을 다운로드 한 후 CDN 에 캐싱처리하기 때문에, AASA 파일을 수정한 뒤, 반영되지 않을 수 도 있다.
+현재 반영된 AASA 파일을 확인하려면 아래 사이트로 접속하면 된다.
+
+```bash
+https://app-site-association.cdn-apple.com/a/v1/yourdomain.com
+# ex) https://app-site-association.cdn-apple.com/a/v1/example.com
+```
 
 </br>
 
