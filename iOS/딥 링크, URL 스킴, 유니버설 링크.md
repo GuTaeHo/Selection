@@ -100,6 +100,8 @@ iOS 13 이상 버전을 가정하고 진행, iOS 12 이하는 `AASA` 포맷이 �
 - Content-Type이 application/json으로 전달되어야 한다.
 - AASA 파일은 확장자가 없다. apple-app-site-association.json으로 표기하지 않도록 주의.
 - `.well-known` 디렉토리 아래에 다른 디렉토리를 만들어 AASA 파일을 위치 시키지 말 것 (OS 가 인식하지 못함)
+- iOS 는 AASA 파일을 다운로드 한 후 캐싱처리하기 때문에, AASA 파일을 수정한 뒤, 반영되지 않을 수 도 있다  
+앱을 삭제하거나,  
 
 </br>
 
@@ -113,14 +115,14 @@ iOS 13 이상 버전을 가정하고 진행, iOS 12 이하는 `AASA` 포맷이 �
                     "appIDs": ["TEAM_ID.BUNDLE_ID"],
                     "components": [
                         {
-                            "/": "*"
-                        },
-                        {
                             "/": "/test/*",
-                            "#": {
+                            "?": {
                                 "user": "gutaeho"
                             },
                             "comment": "for universal link test"
+                        },
+                        {
+                            "/": "*"
                         }
                     ]
                 }
@@ -131,10 +133,26 @@ iOS 13 이상 버전을 가정하고 진행, iOS 12 이하는 `AASA` 포맷이 �
 
     </br>
 
-    `components`: 링크 접속 시 앱에 전달될 URL 스트링, 여러개를 작성해서 링크별로 앱 진입 분기 및 데이터 전달 가능
-    `/`: URL path (`*` 는 전부를 의미)
-    `?`: `/` 의 뒤에 추가로 전달될 쿼리 스트링
+    `components`: 링크 접속 시 URL 매칭 유무를 검사해 맞는 URL 만 통과시킨다.
+    `/`: URL path (`*` 는 전부를 의미) 일치유무 검사
+    `?`: `/` 의 뒤에 쿼리 스트링 일치유무 검사
     `comment`: url 에 대한 메모
+
+    </br>
+
+    위의 컴포넌트를 해석하면 다음과 같다
+
+    1. `https://domain.com/test` 아래 경로에 있는 모든 파일이고, 쿼리스트링이 `user=gutaeho` 일 때 통과한다.
+    2. `https://domain.com` 아래 경로에 있는 모든 파일을 통과 시킨다.
+    </br>
+
+    **주의사항**
+
+    ```
+    components 는 위에서 차례대로 매칭을 시도한다.
+
+    범용적인 패턴은 아래에 두는것을 권장
+    ```
 
     </br>
 
