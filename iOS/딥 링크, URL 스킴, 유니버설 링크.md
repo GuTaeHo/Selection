@@ -140,10 +140,10 @@ https://app-site-association.cdn-apple.com/a/v1/yourdomain.com
 
     </br>
 
-    `components`: 링크 접속 시 URL 매칭 유무를 검사해 맞는 URL 만 통과시킨다.
-    `/`: URL path (`*` 는 전부를 의미) 일치유무 검사
-    `?`: `/` 의 뒤에 쿼리 스트링 일치유무 검사
-    `comment`: url 에 대한 메모
+    `components`: 링크 접속 시 URL 매칭 유무를 검사해 맞는 URL 만 통과시킨다.  
+    `/`: URL path (`*` 는 전부를 의미) 일치유무 검사  
+    `?`: `/` 의 뒤에 쿼리 스트링 일치유무 검사  
+    `comment`: url 에 대한 메모  
 
     </br>
 
@@ -173,8 +173,6 @@ https://app-site-association.cdn-apple.com/a/v1/yourdomain.com
     
 
 4. Xcode > Target > Signing & Capabilities 탭 > + Capability -> Associated Domains 추가
-
-    </br>
 
     **Domains 에 아래 내용 작성**
 
