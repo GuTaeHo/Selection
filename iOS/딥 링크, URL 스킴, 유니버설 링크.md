@@ -112,6 +112,16 @@ https://app-site-association.cdn-apple.com/a/v1/yourdomain.com
 
 </br>
 
+
+`CDN` 서버는 약 24시간 이내에 AASA 파일을 갱신하고,
+사용자 `OS` 는 앱 설치 후 약 7일에 한 번 업데이트를 확인한다
+
+
+https://developer.apple.com/forums/thread/699401
+https://developer.apple.com/documentation/xcode/supporting-associated-domains
+
+</br>
+
 1. apple-app-site-association (AASA) 파일 생성
 
     ```bash
@@ -185,3 +195,10 @@ https://app-site-association.cdn-apple.com/a/v1/yourdomain.com
     ```
     브라우저에서 example.com 검색 후 앱 설치되어있다면 켜지고, 미 설치라면 index 페이지로 이동하는지 확인
     ```
+
+</br>
+
+## 참고
+https://dchkang83.tistory.com/171
+https://www.tosspayments.com/blog/articles/dev-10
+https://velog.io/@devjay/iOS-%EC%9C%A0%EB%8B%88%EB%B2%84%EC%85%9C-%EB%A7%81%ED%81%AC%EA%B0%80-%EC%99%9C-%ED%8A%B9%EC%A0%95-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%97%90%EC%84%9C-%EB%A6%AC%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%84%EA%B9%8C
