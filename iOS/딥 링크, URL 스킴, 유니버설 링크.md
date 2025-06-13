@@ -67,7 +67,17 @@ iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단
 
 **동작방식**
 
-1. 사용자가 링크를 누르거나 검색
+1. 사용자가 링크를 누른다
+
+    링크를 브라우저에 **직접 타이핑**할 경우, 즉시 이동하지않는다!
+    메시지나 카메라 앱 (QR 코드) 로 링크를 클릭해야 정상동작한다
+
+    </br>
+
+    카카오 인앱 브라우저 동작 X
+
+    </br>
+
 2. `iOS` 가 해당 URL 과 연결된 앱이 설치되었는지 확인
 3. 설치되어있다면 앱 실행, 없다면 해당 링크의 웹 사이트 오픈
 
@@ -81,4 +91,74 @@ iOS 9 이상 부터 지원하기 시작했고, 기존 `URL Scheme` 방식의 단
 ```
 신뢰할 수 있는 루트 인증기관(`CA`)에서 발급한 인증서가 설치된  
 `https` 프로토콜로 접근 가능한 웹 서버가 있다는 가정하에 진행
+
+iOS 13 이상 버전을 가정하고 진행, iOS 12 이하는 `AASA` 포맷이 약간 다름
 ```
+
+**주의사항**
+
+- Content-Type이 application/json으로 전달되어야 한다.
+- AASA 파일은 확장자가 없다. apple-app-site-association.json으로 표기하지 않도록 주의.
+- `.well-known` 디렉토리 아래에 다른 디렉토리를 만들어 AASA 파일을 위치 시키지 말 것 (OS 가 인식하지 못함)
+
+</br>
+
+1. apple-app-site-association (AASA) 파일 생성
+
+    ```bash
+    {
+        "applinks": {
+            "details": [
+                {
+                    "appIDs": ["TEAM_ID.BUNDLE_ID"],
+                    "components": [
+                        {
+                            "/": "*"
+                        },
+                        {
+                            "/": "/test/*",
+                            "#": {
+                                "user": "gutaeho"
+                            },
+                            "comment": "for universal link test"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+    ```
+
+    </br>
+
+    `components`: 링크 접속 시 앱에 전달될 URL 스트링, 여러개를 작성해서 링크별로 앱 진입 분기 및 데이터 전달 가능
+    `/`: URL path (`*` 는 전부를 의미)
+    `?`: `/` 의 뒤에 추가로 전달될 쿼리 스트링
+    `comment`: url 에 대한 메모
+
+    </br>
+
+2. 웹 서버 루트 디렉토리에 있는 .well-known 디렉토리 아래에 `AASA` 파일 위치
+
+    ```
+    없다면 "/.well-known" 디렉토리 생성한 뒤 넣으면 됨
+    ```
+
+3. 웹 서버 `AASA` MIME 타입 변경
+    
+
+4. Xcode > Target > Signing & Capabilities 탭 > + Capability -> Associated Domains 추가
+
+    </br>
+
+    **Domains 에 아래 내용 작성**
+
+    ```
+    applinks:example.com
+    ```
+
+5. 앱 빌드 및 추가된 도메인으로 접속
+
+    ```
+    브라우저에서 example.com 검색 후 앱 설치되어있다면 켜지고, 미 설치라면 index 페이지로 이동하는지 확인
+    ```
