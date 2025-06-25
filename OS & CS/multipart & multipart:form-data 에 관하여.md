@@ -2,23 +2,23 @@
 
 ### 클라이언트 -> 서버로 이미지를 업로드할 때는...
 
-jpg, png 형태로 전송되는 것이 아닌 **이미지도 문자**로 이루어져 있기 때문에,
+jpg, png 형태 그대로 전송되는 것이 아닌 **이미지도 문자**로 이루어져 있기 때문에,
 
-문자를 HTTP request body에 담아서 서버로 전송함
+문자를 HTTP request body에 담아서 서버로 전송한다.
 
-<br />
-<br />
+</br>
 
 ### multipart/form-data
 
-클라이언트에서 HTTP 요청 시 HTTP header 에 인코딩 타입을 지정할 수 있는데, 서버는 이 **인코딩 타입을 보고** request body 의 내용을 해석함.
+클라이언트에서 HTTP 요청 시 HTTP header 에 인코딩 타입을 지정할 수 있다.
+
+서버는 이 **인코딩 타입을 보고** request body 가 어떤 타입의 내용인지 해석한다.
 
 헤더에 인코딩 타입을 지정하기 위해서 사용하는 필드가 **Content-type** 이고, 여기에는 **MIME**(Multipurpose Internet Mail Extensions) 타입을 기술할 수 있는데, 여러 타입 중 하나가 **multipart** 임.
 
 인코딩 타입은 request method 가 **post** 인 경우에만 사용할 수 있음 (request body 에 데이터를 담는건 post 만 가능하기 때문에 그런 것으로 보임)
 
-<br />
-<br />
+</br>
 
 ### 인코딩 타입 (HTML 5 기준)
 
@@ -32,8 +32,7 @@ jpg, png 형태로 전송되는 것이 아닌 **이미지도 문자**로 이루�
 
 **text/plain**: 공백문자(space)만  "+" 기호로, 나머지는 인코딩되지 않음 명시
 
-<br />
-<br />
+</br>
 
 ### multipart
 
@@ -47,9 +46,7 @@ jpg, png 형태로 전송되는 것이 아닌 **이미지도 문자**로 이루�
 
 그래서 등장한 것이 **multipart** 타입임
 
-<br />
-<br />
-<br />
+</br>
 
 **[참고]**
 
