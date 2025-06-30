@@ -7,24 +7,19 @@
 **PhotoKit API** 는 두 개의 프레임워크를 제공한다
 
 - Photos
-사진 앱에 쿼리하여 앨범 정보 및 사진 정보를 가져오거나 편집하는 기능을 제공하며, 
-기기뿐만 아니라 iCloud 에 업로드 되어있는 에셋에도 접근 가능하다.
+사진 앱에 쿼리하여 앨범 정보 및 사진 정보를 가져오거나 편집하는 기능을 제공하며, 기기뿐만 아니라 iCloud 에 업로드 되어있는 에셋에도 접근 가능하다.
 또, 대량의 이미지를 위한 캐싱 기능도 제공한다.
-    
 - PhotosUI
-커스텀 포토 피커가 필요하지 않거나, 빠르게 포토 피커 기능이 필요할 경우에 사용가능한 
-`PHPickerViewController` (UIKit), `PhotosPicker` (SwiftUI) 를 제공한다.
+커스텀 포토 피커가 필요하지 않거나, 빠르게 포토 피커 기능이 필요할 경우에 사용가능한 `PHPickerViewController` (UIKit), `PhotosPicker` (SwiftUI) 를 제공한다.
 
 </br>
 </br>
-
 
 ## Photos
 
-
 ### 접근 권한 획득
 
-`PhotosUI` 를 사용하지 않고, 커스텀 포토 피커를 개발할 경우, 
+`PhotosUI` 를 사용하지 않고, 커스텀 포토 피커를 개발할 경우,
 사용자의 사진에 접근하기 위해 먼저 권한을 획득해야한다.
 
 **권한 요청 옵션**
@@ -44,10 +39,10 @@ PHPPhotoLibrary.requestAutorization(for: .readWrite) { status in
 **권한 종류**
 
 
-1-1. 권한 요청 시
+1-1. 권한 요청 시  
 <img src="../Resource/Image/iOS/IOS_PhotoKit_Auth1.jpg" width="50%">
 
-1-2. 설정앱
+1-2. 설정앱  
 <img src="../Resource/Image/iOS/IOS_PhotoKit_Auth2.jpg" width="50%">
 
 - notDetermined: 아직 결정되지않음 (요청한 적 없는 경우)
@@ -65,11 +60,6 @@ PHPPhotoLibrary.requestAutorization(for: .readWrite) { status in
 ### 앨범에서 사진 에셋 가져오기
 
 </br>
-
-### 이미지 요청 시 주의사항
-
-- targetSize
-- reuseable cell
 
 ### 사진 앱 변경 사항 옵져빙
 
@@ -93,3 +83,25 @@ extension CustomerPickerViewController: PHPhotoLibraryChangeObserver {
     }
 }
 ```
+
+</br>
+
+### 이미지 요청 시 주의사항
+
+
+**Request Option**
+
+이미지를 `Photos` 로 요청할 때, 옵션을 줄 수 있다.  
+- 동기 or 비동기적으로 조회
+- iCloud 에 저장된 경우 네트워크 접근을 허용할 건지,  
+
+
+**targetSize**
+
+
+
+</br>
+
+**reuseable cell**
+
+</br>
