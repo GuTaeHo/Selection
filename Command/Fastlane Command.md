@@ -13,14 +13,20 @@ fastlane 설치 및 초기화, 사용 방법과 자주 사용되는 명령어 �
 fastlane init
 ```
 
-2. 배포 선택
+2. 배포 선택  
     테스트플라이트나 앱스토어 배포가 목적이므로 `2` or `3` 선택
 
-3. 스킴 선택
+3. 스킴 선택  
     (스킴이 여러개 일 경우) 원하는 스킴 선택
 
-4. Apple ID or Apple Developer 로그인
+4. Apple ID or Apple Developer 로그인  
     ID, PW 입력 후 발급된 2차 인증 번호 (6자리) 입력
+
+5. `App Store Connect team` 선택  
+    계정이 여러 팀에 속해 있을 경우 표시됨
+
+6. `Developer Portal` 의 team 선택
+    5번과 동일
 
 위 과정을 수행하면 `Appfile`, `Fastfile` 이 자동 추가된다.
 
@@ -38,11 +44,52 @@ fastlane beta
 
 </br>
 
+## 인증서 및 프로파일 설정
+
+`archive` 된 앱을 `testflight` 에 업로드하기 위해서 배포 인증서와 프로비저닝 프로파일이 필요하다.  
+만약 로컬 디렉토리에 저 파일이 없다면, fastlane 이 업로드에 실패한다.
+
+`cert` 로 인증서를 생성 & 다운로드하고,  
+`sign` 로 프로비저닝 프로파일을 생성 & 다운로드 한 뒤,
+
+`testflight` 로 업로드 하려면 `lane` 에 아래 코드를 추가하면 된다
+
+</br>
+
+```ruby
+lane :beta do
+  # 인증서 생성/다운로드
+  cert(
+    development: false,
+    username: "example@example.com" // Developer Portal Email 기입
+  )
+
+  # 프로비저닝 프로파일 생성/다운로드
+  sigh(
+    app_identifier: "com.bundle.com", // 앱 번들 ID 기입
+    username: "example@example.com" // Developer Portal Email 기입
+  )
+
+  ... 
+
+  build_app(workspace: "App.xcworkspace", scheme: "App")
+  upload_to_testflight
+end
+```
 
 
-앱 빌드까지는 성공했지만, `upload_to_testflight` 에서 
-"Failed to get authorization for username and password" 
+</br>
+
+## 업로드 오류해결
+
+앱 빌드까지는 성공했지만, `upload_to_testflight` 에서  
+"Failed to get authorization for username and password" 또는
+
+"The call to the altool completed with a non-zero exit status: 1. This indicates a failure."
+
 에러를 표시하며 실패할 수 있다.
+
+</br>
 
 TestFlight 업로드 처럼 App Store Connect 에 접근해야하는 작업에는 로그인이 반드시 필요한데,
 
