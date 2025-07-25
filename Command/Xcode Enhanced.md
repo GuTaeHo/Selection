@@ -18,6 +18,13 @@ Alt + Command + t
 
 // Organizer 열기
 Command + Option + Shift + O
+
+// 복사 & 아랫줄에 붙여넣기
+Command + d
+
+// 커서 위치 들여 or 내어쓰기
+Command + ] or [
+
 ```
 
 </br>
