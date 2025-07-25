@@ -23,8 +23,6 @@
 
 <!--TODO: xcframework 특성 작성 -->
 
-
-
 </br>
 
 ## 프로젝트 생성
@@ -41,22 +39,36 @@
 3. Build Settings > Skip Install 'No' & Build Libraries for Distribution 'Yes' & Architectures 'arm64'(default) 변경
 4. `Mach-o Type` 을 static 으로 설정(앱 실행 파일 내부에 포함하며, 별도의 사이닝이 필요없어짐)
 
-<br>
+</br>
 
 ## xcframework 빌드
+
 .xcodeproj 가 있는 디렉토리에서 아래 명령 실행
 루트 디렉토리에 `Build`, `Output` 디렉토리가 있는 상황을 가정
 
-<br>
+`xcframework` 를 만들기 전 중간 산출물을 만들기위헤 `.framework` 또는 `.xcarchive` 를 선택할 수 있는데,  
 
-### 1. xcarchive 생성 명령어 실행, xcodebuild 명령으로 .o 파일 생성
+xcodebuild 의 `archive` 액션을 추가할 경우 결과물이 `.xcarchive` 로 나온다
+
+아래 예시는 `.archive` 로 산출물을 엮어 `.xcframework` 로 만드는 예제다
+
+</br>
+
+```bash
+xcodebuild archive -project <프로젝트파일> -scheme <스킴명> -sdk <SDK명> -destination <플랫폼명> -archivePath <아카이브내보낼경로>
+```
+
+</br>
+
+### 1. 실기기용 .xcarchive 생성
+
 ```bash
 xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme NotificationServiceSupport -sdk iphoneos -destination "generic/platform=iOS" -archivePath ./Build/NotificationServiceSupport.xcarchive
 ```
 
-<br>
+</br>
 
-### 2. 시뮬레이터에서도 동작하도록 시뮬레이터용 xcarchive 생성 명령어 실행
+### (선택) 1-1. 시뮬레이터용 xcarchive 생성
 
 시뮬레이터 동작이 필요없을경우 생략
 
@@ -64,11 +76,11 @@ xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme Notific
 xcodebuild archive -project NotificationServiceSupport.xcodeproj -scheme NotificationServiceSupport -sdk iphonesimulator -destination "generic/platform=iOS Simulator" -archivePath ./Build/NotificationServiceSupport_simulator.xcarchive
 ```
 
-<br>
+</br>
 
-### 3. xcframework 생성 명령어 실행
+### 2. xcframework 생성 명령어 실행
 
-`iOS 기기용` .xcarchive, `iOS Simulator용` .xcarchive 두 파일을 하나의 `.xcframework` 로 생성한다
+`iOS 플랫폼 용` .xcarchive, `iOS Simulator용` .xcarchive 두 파일을 하나의 `.xcframework` 로 생성한다
 
 ```bash
 xcodebuild -create-xcframework -archive ./Build/NotificationServiceSupport.xcarchive -framework NotificationServiceSupport.framework -archive ./Build/NotificationServiceSupport_simulator.xcarchive -framework NotificationServiceSupport.framework -output ./Output/NotificationServiceSupport.xcframework
