@@ -193,7 +193,7 @@ vtool -show-build MyFramework.framework/MyFramework
 
 ### 레이아웃 충돌 시 주소로 어떤 뷰인지 찾는 방법
 
-View Hierarchy 를 실행한 뒤,
+충돌 발생직후, View Hierarchy 를 실행한 뒤,
 `po` 명령으로 주소에 해당하는 뷰의 특성을 알 수 있다.
 
 ```lldb
