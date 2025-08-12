@@ -56,9 +56,23 @@ HTTP 프록시 구성을 수동으로 사용
 여기까지 진행한경우, 서버의 IP 주소와 포트, 도메인 정보는 표시되지만
 HTTPS 통신 특성상, 더 자세한 정보는 TLS 암호화 되어있어서 볼 수 없다.
 
-`Proxyman` 은 암호화된 정보를 복호화하기 위해 가짜 인증서를 발급하고 iOS 기기에 설치 및 신뢰하는 과정을 거치게 하는데,
+`Proxyman` 은 암호화된 정보를 복호화하기 위해 가짜 인증서를 발급하고 iOS 기기에 설치 및 신뢰하는 과정을 거치게 하는데,  
 이 과정을 통해 `Proxyman` 이 발급한 인증서는 공인된 인증서(사설 Root 인증서)가 되어 기기에서  
 발생하는 모든 요청 및 응답을 암 & 복호화 할 수 있게 된다.
+
+</br>
+
+#### 주의사항
+
+실제로 iOS 기기에 설치된 인증서를 비활성화 할 경우, proxyman 에 `ssl proxy tool` 에 등록된 도메인과 통신이 되지 않는다.
+
+이유는 proxyman 에 등록된 도메인은 iOS 기기에 설치된 사설 인증서로 클라이언트 요청을 복호화하는데, 해당 인증서가 더 이상 유효하지 않아 HTTPS 통신이 불가능하지기 떄문이다.
+
+이 경우엔 `ssl proxying tool` 을 끄거나, 해당 도메인을 리스트에서 제거하면된다
+
+</br>
+
+![Proxyman SSL Proxying Tool Setting](../Resource/Image/IOS/imgiOSProxymanSSLProxyingToolSetting.png)
 
 </br>
 
@@ -94,8 +108,19 @@ brew install --cask proxyman
 5. 인증서 다운로드 얼럿이 표시되지않을 경우, 맥 설정 > 네트워크 > 방화벽 > Proxyman.app 추가 및 들어오는 연결 허용
 6. 다시 사파리 접속 및 프로파일 내려받기
 7. iOS 기기 > 설정 > 프로필이 다운로드됨 > 설치
+
+</br>
+
+![Proxyman 설정4](../Resource/Image/IOS/imgiOSProfileDownloadForProxyman1.jpeg)
+
+</br>
+
+![Proxyman 설정5](../Resource/Image/IOS/imgiOSProfileDownloadForProxyman2.jpeg)
+
+</br>
+
 8. 설정 > 일반 > 정보 > 인증서 신뢰 설정 > 인증서 활성화
 
 </br>
 
-![Proxyman 설정3](../Resource/Image/IOS/imgiOSHTTPProxySetting3.jpeg)
+![Proxyman 설정6](../Resource/Image/IOS/imgiOSHTTPProxySetting3.jpeg)
