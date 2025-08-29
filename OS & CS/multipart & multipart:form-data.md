@@ -1,6 +1,6 @@
-## multipart & multipart/form-data 에 관하여
+# multipart & multipart/form-data
 
-### 클라이언트 -> 서버로 이미지를 업로드할 때는...
+## 클라이언트 -> 서버로 이미지를 업로드할 때
 
 jpg, png 형태 그대로 전송되는 것이 아닌 **이미지도 문자**로 이루어져 있기 때문에,
 
@@ -8,7 +8,7 @@ jpg, png 형태 그대로 전송되는 것이 아닌 **이미지도 문자**로 
 
 </br>
 
-### multipart/form-data
+## multipart/form-data
 
 클라이언트에서 HTTP 요청 시 HTTP header 에 인코딩 타입을 지정할 수 있다.
 
@@ -20,7 +20,7 @@ jpg, png 형태 그대로 전송되는 것이 아닌 **이미지도 문자**로 
 
 </br>
 
-### 인코딩 타입 (HTML 5 기준)
+## 인코딩 타입 (HTML 5 기준)
 
 **application/x-www-form-urlencoded**: **기본값**, 서버에게 본문의 모든 문자가 인코딩 됨을 알림
 
@@ -34,7 +34,7 @@ jpg, png 형태 그대로 전송되는 것이 아닌 **이미지도 문자**로 
 
 </br>
 
-### multipart
+## multipart
 
 일반적으로 request body 에는 한 종류의 타입이 대부분이고, 따라서 Content-type 도 타입을 하나만 명시할 수 있음
 
