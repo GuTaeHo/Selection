@@ -206,13 +206,27 @@ Marketing Version = 2.0.1
 2. `Matchfile` 에 아래 내용 작성
 
 ```bash
-git_url("https://githun.com/fastlane-match.git") # git repository 주소
+# git repository 주소 (https)
+git_url("https://github.com/fastlane-match.git")
+# git repository 주소 (ssh)
+# git_url("git@github.com:/fastlane-match.git")
+
 storage_mode("git")
 # 선택 가능: appstore, adhoc, enterprise or development
 # 개발용 프로파일 발급 시 "development", 앱 스토어 배포용 프로파일 발급시 "appstore"
 type("development") 
 username("test@example.com")  # 애플 이메일
 ```
+
+</br>
+
+### 주의사항
+
+(2025/09/05 기준) 새로운 깃 레포지토리를 생성한뒤, 신규 프로파일 생성 시,  
+인증서 접근을 보호하기 위한 `Passphrase` 를 요구한다,  
+만약 공백으로 입력하면 `Git Repository` 에 인증서가 **업로드 되지**않는다
+
+반드시 `Passphrase` 를 입력하도록하자
 
 </br>
 
@@ -270,6 +284,63 @@ fastlane match development
 `--force` 는 프로파일을 유지한 채로 갱신한다는 차이점이 있다.
 
 `nuke` 는 기존 프로파일이 **완전히 제거**되어 동일한 프로파일을 사용하는 팀 전체에 영향이 갈 수 있기 때문에 주의해야한다.
+
+</br>
+</br>
+
+## CI(Git Action & Runner) 환경에서 Match 로 프로파일 가져오기
+
+`https` 의 인증오류 발생과 디바이스 지정 등 까다로운 설정때문에, ci 환경에서 사용하기 용이한 `ssh` 인증을 사용하였다.
+
+아래는 `ssh` 로 match 프로파일을 가져오는 방법이다.
+
+</br>
+
+1. MatchFile 의 레포지토리 주소를 `ssh` 형태로 설정한다.
+2. FastFile 에 match `git_url` 을 `ssh` 형태로 설정한다.
+3. match 프로파일이 저장된 repository 의 settings 로 이동한다.
+4. 로컬 환경에 `ssh-keygen -t ed25519 -C "example.com"` 명령으로 ssh 공개&개인 키를 생성한다.
+5. `Add deploy key` 를 누르고 생성된 .pub 키를 저장한다.
+6. match 프로파일이 저장된 repository 의 `Secrets and variables` 로 이동해 생성된 개인키(ex: MATCH_SSH_KEY)를 추가한다.
+7. `Workflow` 에서 러너에 ssh 키 등록 & fastlane 을 실행한다
+  ```yaml
+  # ssh 키 등록
+  - name: Set up SSH key for match
+    run: |
+      mkdir -p ~/.ssh
+      echo "${{ secrets.MATCH_SSH_KEY }}" > ~/.ssh/id_ed25519
+      chmod 600 ~/.ssh/id_ed25519
+      ssh-keyscan github.com >> ~/.ssh/known_hosts
+    shell: bash
+
+  # fastlane 실행
+  - name: Run Fastlane
+    env:
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+    run: |
+      if [ "${GITHUB_REF##*/}" = "main" ]; then
+        bundle exec fastlane release
+      else
+        bundle exec fastlane beta
+      fi
+  ```
+
+</br>
+
+### 주의사항
+
+#### 인증 오류
+
+`match` 시 프로파일을 git clone 을 통해 가져올 때, 인증 오류가 발생할가능성이 있다.
+
+GUI 가 없는 CI 환경에서 `https` 로 인증 시 발생한 여러 문제점(디바이스 지정 안됨 및 클론 불가)으로 인해 `ssh` 인증을 권장한다
+
+</br>
+
+#### Github Action 권한
+
+private repo 의 경우 `Personal Access Token(PAT)` 가 반드시 필요,  
+PAT 에는 최소 `repo` 권한이 포함되어야함
 
 </br>
 </br>
