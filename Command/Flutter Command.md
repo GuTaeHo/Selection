@@ -25,6 +25,17 @@ brew install --cask flutter
 
 ## flutter version management (fvm) 활성화
 
+### flutter 를 설치하지 않고 fvm 을 바로 설치할 경우
+
+```sh
+# 레포지토리 추가
+brew tap leoafarias/fvm
+# fvm 설치
+brew install fvm
+```
+
+### flutter 를 설치한 경우
+
 1. 루트 이동 및 fvm 활성화
 
 ```sh
