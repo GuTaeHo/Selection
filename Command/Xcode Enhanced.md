@@ -10,7 +10,7 @@ Xcode 를 사용하면서 만난 문제점 및 해결방법 & 조금 더 생산�
 // 현재 화면 새로운 탭으로 열기
 Command + t
 
-// 파일 새로운 탭으로 열기
+// 파일 새로운 탭으로 열기 (Xcode 26 부터 필수)
 Option + 파일 클릭
 
 // 현재 파일 네비게이터에 표시
@@ -21,6 +21,12 @@ Command + Shift + [ or ]
 
 // 상단 바 고정
 Option + Command + t
+
+// 뒤로가기
+Control + Command + 왼쪽화살표
+
+// 탭 전환 (탭이 2개 이상일 경우)
+Command + Shift + { or }
 
 // Organizer 열기
 Command + Option + Shift + O
