@@ -157,12 +157,33 @@ git restore --staged .
 ```
 
 </br>
+</br>
 
 ## git remote
 
+### 원격지 레포지토리를 찾을 수 없을 때
+
+`private` 레포의 경우 간혹 **remote: Repository not found.** 에러를 출력하며 레포지토리 동기화가 불가능할 떄가 있다
+
+깃 허브는 보안을 위해 `private` 레포에 무분별한 임의 접근을 막고, 이 저장소의 진위 여부 조차 알려주지 않는다
+
+이 경우 레포지토리를 등록할 때, 깃 유저네임을 레포지토리 주소 앞에 포함시키면, 인증을 수행할 수 있다
+
+</br>
+
+#### 원격 레포지토리 변경
+
+```sh
+git remote set-url origin https://<user_name>@github.com/<user_name>/<repo_name>.git
+# ex) git remote set-url origin https://GuTaeho@github.com/GuTaeHo/CocoaTalk.git
+```
+
+</br>
+
 ### 보이지 않는 원격지 브랜치 갱신
 
-원격지에 새로 생성된 브랜치가 있고, `git pull` 를 통해 로컬에 가져오려고 했지만 `git branch` 로 확인 해 봐도 브랜치가 보이지 않았다.  
+원격지에 새로 생성된 브랜치가 있고, `git pull` 를 통해 로컬에 가져오려고 했지만  
+`git branch` 로 확인 해 봐도 브랜치가 보이지 않았다.  
 원격지의 변경사항을 확인하기전엔 **git remote** 명령을 통해 원격지의 변경사항을 먼저 가져와야한다.
 
 ```bash

@@ -35,10 +35,6 @@ TMap 에서 제공하는 TMapSDk 는 `.xcframework` 가 아닌 `.framework` 로 
 
 </br>
 
-<!--TODO: xcframework 특성 작성 -->
-
-</br>
-
 ## 프로젝트 생성
 
 1. File > New > Project 선택

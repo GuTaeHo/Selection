@@ -1,6 +1,6 @@
-# macOS & Console & LLDB Command
+# Unix & LLDB Command
 
-`macOS`, `Console`, `LLDB` 명령어 및 효과적이고 자주 사용되는 디버깅 방법 정리
+`Unix`, `macOS`, `LLDB` 명령어 및 효과적이고 자주 사용되는 디버깅 방법 정리
 
 </br>
 
@@ -139,6 +139,73 @@ otool -l MyFramework.framework/MyFramework | grep -A 5 LC_BUILD_VERSION
 
 </br>
 
+### .app 에 연결된 dynamic framework 확인
+
+```bash
+# 명칭이 MyApp.app 일 경우
+otool -l MyApp.app/MyApp
+
+# 출력결과
+# MyApp.app/MyApp:
+# /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics (compatibility version 64.0.0, current version 1889.5.3)
+# /System/Library/Frameworks/CoreText.framework/CoreText (compatibility version 1.0.0, current version 844.5.0)
+# /System/Library/Frameworks/Foundation.framework/Foundation (compatibility version 300.0.0, current version 3502.0.0)
+# ...
+# @rpath/NaverThirdPartyLogin.framework/NaverThirdPartyLogin (compatibility version 1.0.0, current version 1.0.0)
+# @rpath/NMapsMap.framework/NMapsMap (compatibility version 1.0.0, current version 1.0.0)
+# @rpath/NMapsGeometry.framework/NMapsGeometry (compatibility version 1.0.0, current version 1.0.0)
+```
+
+위 결과의 `/System` 경로에 있는 프레임워크는 `System Dynamic Framework` 이며, 모든 앱이 하나의 프레임워크를 공유한다
+
+`@rpath` 경로에 있는 프레임워크는 해당 앱에만 링크된 `Dynamic Framework` 이며, 해당 앱 번들 내부에서만 참조가능하다\
+
+**자세한 내용**은 [Static Framework & Dynamic Framework](../iOS/Static%20Framework%20&%20Dynamic%20Framework.md) 참고
+
+</br>
+</br>
+
+## nm
+
+`otool` 은 동적 링크된 `Dynamic Framework` 목록은 확인할 수 있으나, 앱 바이너리에 링크된 `Static Framework` 는 확인이 불가능하다
+
+`nm` 명령은 실행 바이너리에 병합된 Framework 와 해당 프레임워크가 사용하는 목적 파일(`.o`) 심지어 어떤 심볼(함수, 변수)가 있는지도 출력이 가능하다
+
+</br>
+
+```bash
+# 디버그 심볼이 포함된 MyApp 의 목적 파일만 출력
+nm -debug-syms MyApp | grep "\.o"
+```
+
+</br>
+
+### 주의사항
+
+`nm` 명령을 수행해도 아무런 결과가 표시되지않는 경우가 있다
+
+이는 앱을 빌드할 때 실행바이너리의 **디버그 심볼 정보를 모두 제거하는 옵션**이 켜져 있을 경우 발생한다.
+
+단, 실제 배포용 앱에서는 보안상 취약할 뿐 아니라 심볼정보로 인한 앱 사이즈가 커지기 떄문에
+
+**테스트 환경에서만 비활성화하는것을 권장한다**
+
+</br>
+
+#### 비활성화 방법
+
+1. Xcode > Tartgets > Build Settings 열기
+2. `Strip Debug Symbols During Copy`, `Strip Linked Product`, `Strip Style` 설정
+
+`Strip Debug Symbols During Copy` 은 `No`,  
+`Strip Linked Product` 은 `No`,  
+`Strip Style` 은 `Debugging Symbols`
+
+로 설정 시 실행파일 내부에 심볼정보가 남게된다
+
+</br>
+</br>
+
 ## vtool
 
 `otool` 의 복잡한 플랫폼 정보 결과물을 직관적으로 출력하는 도구
@@ -183,6 +250,7 @@ vtool -show-build MyFramework.framework/MyFramework
 #   version 1167.5
 ```
 
+</br>
 </br>
 
 ## po (Print Object)
@@ -262,13 +330,3 @@ thread backtrace
 
 bt
 ```
-
-</br>
-
-## Console
-
-macOS 에는 모든 시스템 로그를 볼 수 있는 `console.app` 이 제공된다.
-
-이 앱은 기기별 & 프로세스 별 로그를 필터링 해 필요한 로그만을 볼 수 있는 기능을 제공한다.
-
-### Console 과 xcrun 을 이용한 APNs 테스트
