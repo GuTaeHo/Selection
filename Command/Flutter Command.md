@@ -7,7 +7,7 @@
 
 **안드로이드 스튜디오를 사용할 경우**
 
-`Settings` -> `Languages & Frameworks` -> 설치된 flutter SDK 경로  
+`Settings` -> `Languages & Frameworks` -> 설치된 flutter SDK 경로
 
 위 설정 완료 후
 
@@ -48,7 +48,7 @@ flutter pub global activate fvm
 export PATH="$PATH":"$HOME/flutter/bin"
 export PATH="$PATH":"$HOME/bin/cache/dart-sdk/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-``` 
+```
 
 3. 적용
 
@@ -86,14 +86,29 @@ fvm list
 ## 프로젝트에 버전 적용
 
 ```sh
+# 로컬(프로젝트) 수준 버전 사용
 fvm use <version>
 fvm use 3.10.6
+
+# 글로벌(전역) 수준 버전 사용
+fvm global <version>
+fvm global 3.10.6
 ```
 
 </br>
 </br>
 
 ## 의존성
+
+### 의존성 추가
+
+`pubspec.yaml` 파일 열기
+
+```sh
+dependencies:
+    <module_name>: <version>
+    # get: ^4.0.0
+```
 
 ### 의존성 재설치
 
