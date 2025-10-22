@@ -173,9 +173,13 @@ git restore --staged .
 
 `private` 레포의 경우 간혹 **remote: Repository not found.** 에러를 출력하며 레포지토리 동기화가 불가능할 떄가 있다
 
-깃 허브는 보안을 위해 `private` 레포에 무분별한 임의 접근을 막고, 이 저장소의 진위 여부 조차 알려주지 않는다
+깃 허브는 보안을 위해 `private` 레포에 무분별한 임의 접근을 막고, 이 저장소의 진위 여부 조차 알려주지 않기 때문인데,
 
-이 경우 레포지토리를 등록할 때, 깃 유저네임을 레포지토리 주소 앞에 포함시키면, 인증을 수행할 수 있다
+이 경우 레포지토리를 등록할 때, `깃허브 유저네임`을 레포지토리 주소 앞에 포함시키면, 인증을 수행할 수 있다
+
+#### 주의사항
+
+`git config user.name` 이 아닌, `Git Hub 의 유저네임` 이다 혼동하지 말 것
 
 </br>
 
@@ -184,6 +188,13 @@ git restore --staged .
 ```sh
 git remote set-url origin https://<user_name>@github.com/<user_name>/<repo_name>.git
 # ex) git remote set-url origin https://GuTaeho@github.com/GuTaeHo/CocoaTalk.git
+```
+
+#### 적용 확인
+
+```sh
+git remote -v
+# origin https://GuTaeho@github.com/GuTaeHo/CocoaTalk.git
 ```
 
 </br>
