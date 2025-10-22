@@ -110,6 +110,8 @@ dependencies:
     # get: ^4.0.0
 ```
 
+</br>
+
 ### 의존성 재설치
 
 프로젝트 루트로 이동 후
@@ -121,4 +123,166 @@ flutter pub get
 
 ```sh
 flutter doctor
+```
+
+</br>
+
+### + JsonSerializable (데이터 직렬화)
+
+`JSON` 형식의 데이터를 특정 `Model` 과 매핑이 필요할 경우가 있다.
+
+`수동` 및 `자동 직렬화` 방식을 지원하지만, 오타 및 작성시간이 많이 걸리기 때문에  
+`@JsonSerializable` 어노테이션을 이용한 `자동 직렬화`를 많이 사용한다
+
+#### 수동 직렬화
+
+```dart
+class SystemInfo {
+  final String cpuManufacturer;
+  final String cpuBrand;
+  final String cpuModel;
+  final double memoryTotalMB;
+  final double memoryUsedMB;
+  final double memoryFreeMB;
+  final double memoryUsagePercent;
+  final double diskSize;
+  final List<DiskInfo> diskInfos;
+
+  SystemInfo({
+    required this.cpuManufacturer,
+    required this.cpuBrand,
+    required this.cpuModel,
+    required this.memoryTotalMB,
+    required this.memoryUsedMB,
+    required this.memoryFreeMB,
+    required this.memoryUsagePercent,
+    required this.diskSize,
+    required this.diskInfos,
+  });
+
+  factory SystemInfo.fromJson(Map<String, dynamic> json) {
+    return SystemInfo(
+        cpuManufacturer: json['cpuManufacturer'] ?? '',
+        cpuBrand: json['cpuBrand'] ?? '',
+        cpuModel: json['cpuModel'] ?? '',
+        memoryTotalMB: json['memoryTotalMB'] ?? 0,
+        memoryUsedMB: json['memoryUsedMB'] ?? 0,
+        memoryFreeMB: json['memoryFreeMB'] ?? 0,
+        memoryUsagePercent: json['memoryUsagePercent'] ?? 0,
+        diskSize: json['diskSize'] ?? 0,
+        diskInfos: List<DiskInfo>.from((json['diskInfos'] ?? []).map((e) => DiskInfo.fromJson(e)),
+      ),
+    );
+  }
+}
+
+class DiskInfo {
+  final String mount;
+  final double totalMB;
+  final double usedMB;
+  final double availableMB;
+  final double usePercent;
+
+  DiskInfo({
+    required this.mount,
+    required this.totalMB,
+    required this.usedMB,
+    required this.availableMB,
+    required this.usePercent,
+  });
+
+  factory DiskInfo.fromJson(Map<String, dynamic> json) {
+      return DiskInfo(
+        mount: json['mount'] ?? '',
+        totalMB: json['totalMB'] ?? 0,
+        usedMB: json['usedMB'] ?? 0,
+        availableMB: json['availableMB'] ?? 0,
+        usePercent: json['usePercent'] ?? 0,
+    );
+  }
+}
+```
+
+</br>
+
+#### @JsonSerializable
+
+1. `pubspec.yml` 에 패키지 추가
+
+```yaml
+# pubspec.yaml
+
+dependencies:
+  json_annotation: ^4.0.0
+
+dev_dependencies:
+  json_serializable: ^6.0.0
+  build_runner: ^2.0.0
+```
+
+2. `pug get` 으로 의존성 추가
+
+3. `Model` 작성
+
+```dart
+import 'package:json_annotation/json_annotation.dart';
+
+// 파일명.g.dart 추가
+part 'pi_system_info.g.dart';
+
+@JsonSerializable()
+class SystemInfo {
+  final String cpuManufacturer;
+  final String cpuBrand;
+  final String cpuModel;
+  final double memoryTotalMB;
+  final double memoryUsedMB;
+  final double memoryFreeMB;
+  final double memoryUsagePercent;
+  final double diskSize;
+  final List<DiskInfo> diskInfos;
+
+  SystemInfo({
+    required this.cpuManufacturer,
+    required this.cpuBrand,
+    required this.cpuModel,
+    required this.memoryTotalMB,
+    required this.memoryUsedMB,
+    required this.memoryFreeMB,
+    required this.memoryUsagePercent,
+    required this.diskSize,
+    required this.diskInfos,
+  });
+
+  factory SystemInfo.fromJson(Map<String, dynamic> json) =>
+      _$SystemInfoFromJson(json);
+  Map<String, dynamic> toJson() => _$SystemInfoToJson(this);
+}
+
+@JsonSerializable()
+class DiskInfo {
+  final String mount;
+  final double totalMB;
+  final double usedMB;
+  final double availableMB;
+  final double usePercent;
+
+  DiskInfo({
+    required this.mount,
+    required this.totalMB,
+    required this.usedMB,
+    required this.availableMB,
+    required this.usePercent,
+  });
+
+  factory DiskInfo.fromJson(Map<String, dynamic> json) =>
+      _$DiskInfoFromJson(json);
+  Map<String, dynamic> toJson() => _$DiskInfoToJson(this);
+}
+```
+
+4. 터미널에서 `build runner` 실행
+
+```sh
+flutter pub run build_runner **build**
 ```
