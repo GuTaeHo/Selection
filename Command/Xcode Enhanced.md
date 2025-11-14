@@ -58,17 +58,17 @@ rm -rf ~/Library/Developer/Xcode/DerivedData
 ### 다중 타겟 프로젝트의 Build Settings 버전 관리 방법
 
 여러 플랫폼을 지원하거나, `App Extension` 을 구현한 프로젝트일 경우 타겟이 2개 이상일텐데,
-`App Extension` 은 타겟 앱과 버전이 동일해야하며 (컴파일 경고), 
+`App Extension` 은 타겟 앱과 버전이 동일해야하며 (컴파일 경고),
 플랫폼간 버전을 통일해야하는 경우 매번 모든 타겟의 버전을 변경해야한다.
 
-Xcode 의 `Build Settings` 는 프로젝트 단위에 설정된 값을 타겟이 참조할 수 있는데, 
+Xcode 의 `Build Settings` 는 프로젝트 단위에 설정된 값을 타겟이 참조할 수 있는데,
 이를 활용하면 프로젝트 단위 값만 변경하는 것으로 손쉽게 변경할 수 있다.
 
 </br>
 
 **프로젝트 단위 설정**
 
-xcode > project > build settings 로 이동 후, 검색창에 `version` 을 입력하면 아래와 같이 표시된다. 
+xcode > project > build settings 로 이동 후, 검색창에 `version` 을 입력하면 아래와 같이 표시된다.
 
 ![Build Settings From Project](../Resource/Image/Command/imgProjectBuildSettings.png)
 
@@ -98,7 +98,7 @@ xcode > project > build settings 로 이동 후, 검색창에 `version` 을 입�
 **유의사항**
 Build Settings 의 값을 공백으로 넣더라도 값이 `""` 으로 할당되는 경우가 있다.
 이 때는 수정될 필드를 한번 누르고 `back space` 나 `delete` 를 누르면된다.
-(xcode16 기준) 값이 할당되었을 경우, 둥근 초록색 박스가 표시되지만, 
+(xcode16 기준) 값이 할당되었을 경우, 둥근 초록색 박스가 표시되지만,
 값이 없을 경우 배경과 동일한 색상으로 표시된다.
 
 </br>
@@ -115,7 +115,7 @@ Build Settings 의 값을 공백으로 넣더라도 값이 `""` 으로 할당되
 #### 주의사항
 
 > App Extension 들은 앱과는 다르게 디버거 제한 사항이 있기 때문에, 스킴을 실행해도 디버거가 못 붙거나, 다시 떼지는 경우가 있다.  
-이럴 때는 아래 작성된 `Attach to Process` 로 프로세스에 디버거를 직접 붙여주면 된다.
+> 이럴 때는 아래 작성된 `Attach to Process` 로 프로세스에 디버거를 직접 붙여주면 된다.
 
 </br>
 
@@ -163,7 +163,7 @@ settings set plugin.process.gdb-remote.packet-timeout 300
 vi ~/.lldbinit
 ```
 
-2. 다음 라인을 파일에 추가한다.  
+2. 다음 라인을 파일에 추가한다.
 
 ```bash
 settings set target.experimental.swift-enable-cxx-interop false
@@ -199,29 +199,29 @@ ssh-keygen -t ecdsa -C "your_email@example.com" -m PEM
 
 </br>
 
-![허용되지 않은 키 에러](../Resource/Image/Command/imgXcodeNotAllowSha1.png)  
+![허용되지 않은 키 에러](../Resource/Image/Command/imgXcodeNotAllowSha1.png)
 
-*keygen 의 타입 옵션을 주지 않으면 SHA-1 으로 생성된다.  
-Xcode 는 SHA-1 으로 암호화된 키를 허용하지 않기 때문에 ecdsa 방식으로 생성해야한다*
+_keygen 의 타입 옵션을 주지 않으면 SHA-1 으로 생성된다.  
+Xcode 는 SHA-1 으로 암호화된 키를 허용하지 않기 때문에 ecdsa 방식으로 생성해야한다_
 
 </br>
 
-*PEM 옵션은 pull, push 를 수행할 때 마다 인증을 해줘야하는 번거로움을 제거한다*
+_PEM 옵션은 pull, push 를 수행할 때 마다 인증을 해줘야하는 번거로움을 제거한다_
 
 2. ssh 키 생성  
-~/.ssh 경로확인 및 passphrase 를 엔터로 스킵한다.
-![키 생성](../Resource/Image/Command/imgGeneratedSSHKeys.png)  
+   ~/.ssh 경로확인 및 passphrase 를 엔터로 스킵한다.
+   ![키 생성](../Resource/Image/Command/imgGeneratedSSHKeys.png)
 
 3. 공개키(.pub) 깃 허브에 저장  
-프로필 > Settings > SSH and GPG keys > New SSH key  
-![키 등록](../Resource/Image/Command/imgGitSettings.png)  
+   프로필 > Settings > SSH and GPG keys > New SSH key  
+   ![키 등록](../Resource/Image/Command/imgGitSettings.png)
 
 4. Xcode Git 설정  
-Xcode > Settings > Accounts > Source Control Accounts  
-![Xcode 키 등록](../Resource/Image/Command/imgSSHKeyRegistForXcode.png)  
+   Xcode > Settings > Accounts > Source Control Accounts  
+   ![Xcode 키 등록](../Resource/Image/Command/imgSSHKeyRegistForXcode.png)
 
 5. 원격지 변경
-http 로 clone 을 받은 프로젝트라면 ssh 로 변경해줘야한다.  
+   http 로 clone 을 받은 프로젝트라면 ssh 로 변경해줘야한다.
 
 ```bash
 # 원격지 확인
@@ -270,6 +270,7 @@ xcrun simctl delete unavailable
 </br>
 
 ### Cannot Preview in this file (패키지, 프레임워크 로딩 문제)
+
 KakaoSDK 나 Firebase 등 objc 기반으로 작성된 프레임워크를 사용중인 프로젝트에서 주로 발견되는 것으로 보인다.
 
 **로그**
@@ -282,7 +283,7 @@ KakaoSDK 나 Firebase 등 objc 기반으로 작성된 프레임워크를 사용�
 
 </br>
 
-### Failed to build 
+### Failed to build
 
 프로젝트에서 정의된 메소드와 패키지(프레임워크)의 메소드 중복될 경우 발생한다
 
@@ -362,7 +363,7 @@ rm -rf ~/.swiftpm
 </br>
 
 ### Package 추가 시 에러가 발생할 때
->
+
 > Xcode > File > Add Package Dependencies 후 설치 시 아래 에러 발생  
 > 에러 내용: skipping cache due to an error the repository could not be found
 
@@ -376,14 +377,14 @@ rm -rf ~/.swiftpm
 
 - Xcode 를 완전히 종료한 다음 아래 명령어를 실행한다
 
-    ```bash
-    defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
-    ```
+  ```bash
+  defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+  ```
 
 </br>
 
 ### 높은 버전 Package 가 내려받아지지 않을 때(테스트 환경: Xcode 16.2)
->
+
 > 패키지의 높은 버전이 Git 에 올라와 있지만,  
 > 프로젝트에서 이전 버전의 버전만 보고있음
 
@@ -393,7 +394,7 @@ ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.
 
 **해결 방법**
 
-1. **Xcode 끄고 다시 실행**
+1. **Xcode !끄고! 다시 실행**
 2. Xcode > File > Packages > Update to Last Package Versions 실행
 
 </br>
@@ -401,7 +402,7 @@ ex) git remote 에 `1.0.5` 태그가 올라왔지만, 아직 프로젝트는 `1.
 
 ## Apple Watch
 
-> **들어가기 전..**   
+> **들어가기 전..**  
 > 애플은 워치 앱 개발 환경을 전혀 개선하지 않고 있다.  
 > Xcode 로 워치를 처음 연결하는 과정과 개발 도중 지속적인 연결 해제 및 재연결 실패  
 > 만약 워치 앱을 개발해야 한다면, 실 기기와 통신 및 디버깅은 못한다고 가정하고 개발할 것  
@@ -415,27 +416,26 @@ Apple Watch 앱 개발 시 연결 단계에서 엄청 고생하는듯 하다...
 
 [포럼](#참고)은 아래 참고를 확인
 
-
 ### 개발 전 선행 작업
 
 1. 아이폰, 맥, 워치 모두 같은 네트워크에 있어야함  
-	2.4Ghz, 5Ghz 대역대는 달라도 문제 없는 듯  
-	ex) 맥 = 5.0Ghz, 워치 = 2.4Ghz
-	
-	워치는 2.4Ghz 대역밖에 못 잡음
-	
-	라우터 아래 네트워크 환경에서 개발 권장,  
-	환경 상 어쩔 수 없이 제 3의 아이폰 핫스팟으로 연결해보려했으나 실패...
+   2.4Ghz, 5Ghz 대역대는 달라도 문제 없는 듯  
+   ex) 맥 = 5.0Ghz, 워치 = 2.4Ghz
+
+   워치는 2.4Ghz 대역밖에 못 잡음
+
+   라우터 아래 네트워크 환경에서 개발 권장,  
+   환경 상 어쩔 수 없이 제 3의 아이폰 핫스팟으로 연결해보려했으나 실패...
 
 2. Xcode 의 워치 시뮬레이터 설치 (개발하려면 무조건 설치하라고 표시해줌)
 
 3. 워치의 shared cache symbols 를 가져오기
-	(symbols 를 가져오기 전 워치 시뮬레이터가 선행 설치되어 있어야함)
-	설치되어 있지 않다면 Device Manager 에서 연결되지 않았다고 지속적으로 표시
+   (symbols 를 가져오기 전 워치 시뮬레이터가 선행 설치되어 있어야함)
+   설치되어 있지 않다면 Device Manager 에서 연결되지 않았다고 지속적으로 표시
 
 - shared cache symbols 은 워치가 잠금이 풀려있지 않아도 네트워크에 연결되어있고,  
-	shared cache symbols 을 가져올 수 있다.  
-    이 과정이 상당히 오래(약 10 ~ 15분, 총 2.2GB, 2MB/s) 걸린다. **기다리자**
+  shared cache symbols 을 가져올 수 있다.  
+   이 과정이 상당히 오래(약 10 ~ 15분, 총 2.2GB, 2MB/s) 걸린다. **기다리자**
 
 - 워치용 앱을 개발할 때는 아이폰을 맥과 유선 연결하는 것을 권장(필수적일 수도 있음)
 
@@ -454,16 +454,17 @@ Apple Watch 앱 개발 시 연결 단계에서 엄청 고생하는듯 하다...
 7. Xcode 를 열고 iPhone 페어링(다시 신뢰)
 8. Watch 와 iPhone 에서 개발자 모드 활성화
 9. 작동
-	
+
 </br>
 
 ### 지속적으로 연결 시도... 전송 에러 발생 시
+
 Xcode 를 완전히 끈다음, 맥의 WIFI 끈 후 재접속,  
 워치가 2.4Ghz 대역대의 네트워크에 잘 연결되어있는지 확인 후 다시 Xcode 켜서 빌드
 
 </br>
 
-## 참고  
+## 참고
 
 [lldb 가 왜 이렇게 느리죠?](https://stackoverflow.com/questions/75850606/why-is-lldb-so-painfully-slow)
 

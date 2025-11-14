@@ -22,7 +22,7 @@ tuist edit
 
 ...
 
-# 편집완료 후 
+# 편집완료 후
 tuist generate
 ```
 
@@ -32,7 +32,7 @@ tuist generate
 
 ### 종속성 설치
 
-`Package.swift 파일에 명세된 url 의 패키지를 내려받는다.  
+`Package.swift 파일에 명세된 url 의 패키지를 내려받는다.
 
 최초 설치라면 명세된 버전 중 가장 높은 버전을, 이미 설치가 되었다면  
 Package.resolved 에서 캐싱된 버전을 내려받는다.
@@ -50,6 +50,7 @@ tuist install
 ### 종속성 업데이트
 
 새로운 종속성을 내려받는다.
+
 > `pod update` 와 동일하게 캐싱된 버전을 지우고, 완전히 새로운 종속성을 설치한다.
 
 ```base
@@ -69,7 +70,7 @@ tuist install --update
 </br>
 
 1. Tuist 프로젝트 루트 디렉토리로 이동
-2. Tuist 디렉토리 아래에 있는 Package.resolved 파일 열기
+2. Tuist 디렉토리 아래에 있는 `Package.resolved` 파일 열기
 3. 수정하고 싶은 패키지의 버전(`version`)과 리비전(`revision`) 정보 변경
 4. `tuist install` & `tuist generate` 실행
 
@@ -100,3 +101,22 @@ tuist install --update
 </br>
 
 ![Version & Revision](../Resource/Image/Command/imgTuistCommandPackageResovled.png)
+
+</br>
+
+### tuist 접근 권한 문제
+
+`mise` 를 통해 `tuist` 를 설치할 때, sudo 권한으로 설치한경우,  
+`tuist` 에서 생성한 프로젝트가 `root` 권한에 종속되어 사용자 권한으로 파일 수정이 불가능한 경우가 발생한다
+
+</br>
+
+#### 해결방법
+
+프로젝트 폴더 및 하위 파일 권한을 사용자 권한으로 변경하면 해결된다
+
+```sh
+# 프로젝트 폴더 및 하위 폴더, 파일들의 권한을 사용자 권한으로 변경한다
+sudo chown -R $USER <Project>
+# sudo chown -R $USER Zziik
+```
