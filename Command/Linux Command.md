@@ -1,6 +1,6 @@
 ## 파일 시스템
 
-### 특정 확장자 파일 일괄 복사 or 이동 
+### 특정 확장자 파일 일괄 복사 or 이동
 
 그룹웨어에 매 주 업로드해왔던 업무일지를 pdf 형식으로 받을 필요가 있었다.
 
@@ -12,7 +12,7 @@
 
 ![상황2](../Resource/Image/Command/imgLinuxFileFindAndCopy4.png)
 
-ex) 다운로드 > 업무관리 5 > 2023-01-20 구태호 > 2023년 1월 3주차 주간업무보고_구태호 > 2023년 1월 3주차 주간업무보고_구태호.pdf
+ex) 다운로드 > 업무관리 5 > 2023-01-20 구태호 > 2023년 1월 3주차 주간업무보고*구태호 > 2023년 1월 3주차 주간업무보고*구태호.pdf
 
 </br>
 
@@ -40,6 +40,7 @@ find 검색할경로 -type f -iname "*.pdf"
 옮겨질 파일에 문제가 없다면 복사를 해보자
 
 만약 복사전 디렉토리가 없을경우 미리 생성해두자
+
 ```bash
 mkdir ~/Documents/work
 ```
@@ -77,11 +78,11 @@ find 검색할경로 -type f -iname "*.pdf" -exec mv "{}" 복사될경로 \;
 
 참고: https://pyromaniac.me/24
 
-**ssh-keygen** 명령을 통해 공개키와 비밀키 쌍을 생성할 수 있다  
+**ssh-keygen** 명령을 통해 공개키와 비밀키 쌍을 생성할 수 있다
 
 `-t`: 키 인증 알고리즘 (rsa, dsa, ecdsa)  
 `-b`: 키 비트 수  
-`-f`: 키 파일 명 설정  
+`-f`: 키 파일 명 설정
 
 생성 후 `.pub` 으로 끝나는 확장자가 공개키(Public Key) 나머지가 개인키(Private Key) 이다.
 
@@ -135,6 +136,12 @@ shutdown -r now
 sudo pkill bluetoothd
 ```
 
+### Dock, Widget 프로세스 종료
+
+```sh
+killall Dock & killall NotificationCenter
+```
+
 ### 프로세스 정보
 
 ```zsh
@@ -174,7 +181,7 @@ lsb_release -a
 
 Ubuntu 및 Debian 기반의 소프트웨어 리포지토리는 **/etc/apt/sources.list/** 디렉토리 아래의 별도의 파일로 정의된다
 
-파일을 직접 수정할 수도 있지만, apt-add-repository 명령을 통해 레포지토리를 추가, 수정 및 삭제할 수 있다. 
+파일을 직접 수정할 수도 있지만, apt-add-repository 명령을 통해 레포지토리를 추가, 수정 및 삭제할 수 있다.
 (단, **software-properties-common** 패키지 설치 필요)
 
 ```zsh
