@@ -69,40 +69,40 @@ node express 는 3000번 포트를 사용하지만, 라우터는 3000번으로 �
 
 1. `nginx` 설정 파일로 이동
 
-    ```bash
-    vi /etc/nginx/sites-available/default   # 일반 배포판
-    vi /etc/nginx/nginx.conf    # 라즈베리파이 OS
-    ```
+   ```bash
+   vi /etc/nginx/sites-available/default   # 일반 배포판
+   vi /etc/nginx/nginx.conf    # 라즈베리파이 OS
+   ```
 
 2. `include` 구문 경로 확인 후 이동
 
-    ```bash
-    include /etc/nginx/conf.d/*.conf;   # 확인
+   ```bash
+   include /etc/nginx/conf.d/*.conf;   # 확인
 
-    ...
+   ...
 
-    vi /etc/nginx/conf.d/default.conf   # 이동
-    ```
+   vi /etc/nginx/conf.d/default.conf   # 이동
+   ```
 
 3. server 블록 내부에 아래 코드 추가
 
-    ```bash
-    location / {
-            proxy_pass http://localhost:3000;	# 실질적인 전달(프록시)
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-    ```
+   ```bash
+   location / {
+           proxy_pass http://localhost:3000;	# 실질적인 전달(프록시)
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection 'upgrade';
+           proxy_set_header Host $host;
+           proxy_cache_bypass $http_upgrade;
+       }
+   ```
 
 4. 저장 후 nginx 재시작
 
-    ```bash
-    sudo nginx -t
-    sudo systemctl restart nginx
-    ```
+   ```bash
+   sudo nginx -t
+   sudo systemctl restart nginx
+   ```
 
 </br>
 
@@ -126,6 +126,8 @@ curl -X POST https://server.com/send \
 ## pm2 로 백그라운드에서 서버 실행하기
 
 터미널에서 수동으로 서버를 켰을 때, 터미널에서 다른작업을 하거나 종료되면 서버가 동작하지않는다.
+
+> `node.js` 의 런타임은 브라우저 바깥에서 `javascript` 를 실행할 수 있게 해주지만, 프로세스가 동작중이여야 함
 
 백그라운드에서 api 서버를 동작시키기 위해서 `nohup` 명령어 또는 `pm2` 패키지 등을 사용할 수 있다.
 

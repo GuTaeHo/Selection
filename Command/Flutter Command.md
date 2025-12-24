@@ -1,21 +1,15 @@
 # Flutter Command
 
-> !!! 플러터 버전 관리 도구인 `fvm` 을 사용할 경우 **flutter 설치** 부분을 건너뛸 것
-
 일반적인 상황에서 `fvm` 을 설치 후 특정 버전의 flutter sdk 만 내려받으면 dart 버전이 함께 내려 받아짐  
 (flutter 는 dart 버전에 종속적)
-
-**안드로이드 스튜디오를 사용할 경우**
-
-`Settings` -> `Languages & Frameworks` -> 설치된 flutter SDK 경로
-
-위 설정 완료 후
 
 pubspec.yaml 파일을 연 뒤 `Pub get` 을 클릭해 의존성만 내려받으면 웹에서 실행이 가능함
 
 </br>
 
-## flutter 설치
+## flutter SDK 설치 (단일 버전)
+
+> !!! 플러터 버전 관리 도구인 `fvm` 을 사용할 경우 **flutter 설치** 부분을 건너뛸 것
 
 ```sh
 brew install --cask flutter
@@ -25,7 +19,7 @@ brew install --cask flutter
 
 ## flutter version management (fvm) 활성화
 
-### flutter 를 설치하지 않고 fvm 을 바로 설치할 경우
+### A. flutter 를 설치하지 않고 fvm 을 바로 설치할 경우
 
 ```sh
 # 레포지토리 추가
@@ -34,7 +28,7 @@ brew tap leoafarias/fvm
 brew install fvm
 ```
 
-### flutter 를 설치한 경우
+### B. flutter 를 설치한 경우
 
 1. 루트 이동 및 fvm 활성화
 
@@ -66,11 +60,14 @@ fvm releases
 
 </br>
 
-## 특정 버전 설치
+## flutter SDK 설치
 
 ```sh
 fvm install <version>
 # fvm install 3.10.6
+
+# 최신 안정 버전 설치
+fvm install stable
 ```
 
 </br>
@@ -85,15 +82,45 @@ fvm list
 
 ## 프로젝트에 버전 적용
 
-```sh
-# 로컬(프로젝트) 수준 버전 사용
-fvm use <version>
-fvm use 3.10.6
+### A. 로컬(프로젝트) 수준 버전 사용 [권장!]
 
-# 글로벌(전역) 수준 버전 사용
-fvm global <version>
-fvm global 3.10.6
+> 프로젝트 폴더 내 에서 명령어 실행
+
+```sh
+# 특정 버전 사용
+fvm use <version>
+# fvm use 3.10.6
+
+# 최신 안정 버전 사용
+fvm use stable
 ```
+
+</br>
+
+### B. 글로벌(전역) 수준 버전 사용
+
+```sh
+fvm global <version>
+# fvm global 3.10.6
+
+fvm global stable
+```
+
+</br>
+
+### 로컬에 설치된 SDK 안드로이드 스튜디오에 적용하는 방법
+
+1. `Settings` -> `Languages & Frameworks` -> `Flutter SDK Path`
+2. 폴더 열기 누르고, 숨김 파일 표시 및 .fvm 폴더 선택
+3. .fvm -> flutter_sdk 선택 (flutter 버전 설정하면 **dart 는 알아서 잡힘**)
+4. `apply` 누르기
+5. 현재 프로젝트를 터미널로 열고 아래 명령어로 의존성 내려받기 or `pubspec.yml` 열고 **pub get** 누르기
+
+```sh
+fvm flutter pub get
+```
+
+6. 실행
 
 </br>
 </br>
