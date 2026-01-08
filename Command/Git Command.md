@@ -119,6 +119,39 @@ git config --list
 ![Credential Helper](../Resource/Image/Command/imgGitCloneCredentialHelper.png)
 
 </br>
+
+### 기존 원격 레포지토리를 둔 상태에서 조직 계정으로 레포지토리 일괄 복사하기 (mirror)
+
+일반 `git clone` 은 기본 브랜치와 기본 리모트 정보만 가져오는 반면, `git clone --mirror` 는
+레포지토리의 모든 정보(branch, tag)를 완벽하게 복사한다
+
+</br>
+
+#### 1. 원격 레포에서 로컬로 가져오기 (private 레포일 경우 레포에 접근 가능한 사용자 명 작성필요)
+
+```sh
+git clone --mirror https://{username}@github.com/{username}/Project.git
+```
+
+</br>
+
+#### 2. 클론된 프로젝트로 이동
+
+```sh
+cd Project.git
+```
+
+.gitignore 및 README.md 파일 생성 해제한 상태로 조직 원격 레포를 생성
+
+</br>
+
+#### 3. 조직 원격 레포로 업로드 (private 레포일 경우 레포에 접근 가능한 사용자 명 작성필요)
+
+```sh
+git push --mirror https://{username}@github.com/{orgname}/Project.git
+```
+
+</br>
 </br>
 
 ## git push
