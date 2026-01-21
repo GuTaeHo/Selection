@@ -4,7 +4,6 @@ fastlane 설치 및 초기화, 사용 방법과 자주 사용되는 명령어 �
 
 </br>
 
-
 ## 초기화
 
 1. 프로젝트 루트 디렉토리로 이동 후 아래 명령어 수행
@@ -14,19 +13,19 @@ fastlane init
 ```
 
 2. 배포 선택  
-    테스트플라이트나 앱스토어 배포가 목적이므로 `2` or `3` 선택
+   테스트플라이트나 앱스토어 배포가 목적이므로 `2` or `3` 선택
 
 3. 스킴 선택  
-    (스킴이 여러개 일 경우) 원하는 스킴 선택
+   (스킴이 여러개 일 경우) 원하는 스킴 선택
 
 4. Apple ID or Apple Developer 로그인  
-    ID, PW 입력 후 발급된 2차 인증 번호 (6자리) 입력
+   ID, PW 입력 후 발급된 2차 인증 번호 (6자리) 입력
 
 5. `App Store Connect team` 선택  
-    계정이 여러 팀에 속해 있을 경우 표시됨
+   계정이 여러 팀에 속해 있을 경우 표시됨
 
 6. `Developer Portal` 의 team 선택
-    5번과 동일
+   5번과 동일
 
 위 과정을 수행하면 `Appfile`, `Fastfile` 이 자동 추가된다.
 
@@ -70,13 +69,12 @@ lane :beta do
     username: "example@example.com" // Developer Portal Email 기입
   )
 
-  ... 
+  ...
 
   build_app(workspace: "App.xcworkspace", scheme: "App")
   upload_to_testflight
 end
 ```
-
 
 </br>
 
@@ -107,38 +105,38 @@ Apple 은 Apple 이외의 개발자가 만든 서비스에서 Apple 계정 로�
 3. 암호 명과 계정 비밀번호 입력
 4. 암호 복사 (이 암호는 다시 볼 수 없기 때문에 다른 곳에 미리 복사해 둘 것)
 5. 환경 변수에 등록
-    </br>
+   </br>
 
-    **환경변수 등록 (세션)**
-    ```bash
-    export FASTLANE_USER="appleid@example.com"
-    export FASTLANE_PASSWORD="생성된 암호"
-    ```
+   **환경변수 등록 (세션)**
 
-    위 명령어는 터미널 **세션단위**로 실행된다.
-    매 번 입력하기 귀찮을 경우 `~/.zshrc` 파일에 환경변수를 등록해주면 된다.
+   ```bash
+   export FASTLANE_USER="appleid@example.com"
+   export FASTLANE_PASSWORD="생성된 암호"
+   ```
 
-    </br>
+   위 명령어는 터미널 **세션단위**로 실행된다.
+   매 번 입력하기 귀찮을 경우 `~/.zshrc` 파일에 환경변수를 등록해주면 된다.
 
-    **환경변수 등록**
+   </br>
 
-    ```bash
-    vi ~/.zshrc
+   **환경변수 등록**
 
-    ...
+   ```bash
+   vi ~/.zshrc
 
-    export FASTLANE_USER="appleid@example.com"
-    export FASTLANE_PASSWORD="생성된 암호"
+   ...
 
-    ...
+   export FASTLANE_USER="appleid@example.com"
+   export FASTLANE_PASSWORD="생성된 암호"
 
-    source ~/.zshrc
-    ```
+   ...
 
-    </br>
+   source ~/.zshrc
+   ```
+
+   </br>
 
 6. 다시 lane 실행
-
 
 </br>
 
@@ -150,6 +148,7 @@ Apple 은 Apple 이외의 개발자가 만든 서비스에서 Apple 계정 로�
 4. 생성된 키 다운로드 (한번만 가능하니 저장해둘 것)
 5. fastlane 디렉토리에 생성된 키 복사
 6. `lane` - `build_app()` 메소드 아래에 아래 소스 추가 (`upload_to_testflight` 메소드가 있다면 지울 것)
+
 ```ruby
 api_key = app_store_connect_api_key(
     key_id: "AA1B22CDEF",
@@ -173,7 +172,7 @@ pilot(
 
 앱 확장(App Extension) 을 구현하고 있는 앱이나 다양한 빌드 환경을 사용 중인 앱일 경우, 버전 동기화를 위해 `.xcconfig` 를 많이 사용할 것이다
 
-App Version, Build Version 등을 xcconfig 에서 관리중일 경우, 
+App Version, Build Version 등을 xcconfig 에서 관리중일 경우,
 기존 `update_build_number` 와 `increment_build_number` 는 적합하지 않을 수 있는데
 
 fastlane 이 Target > Build Settings 의 값을 .xcconfig 의 참조 값이 아닌 버전 상수(ex: 1.2.0)로 변경하기 떄문이다.
@@ -194,8 +193,6 @@ Marketing Version = 2.0.1
 
 [XCConfigManager](#XCConfigManager) 에서는 `Key` 에 해당하는 `Value`를 업데이트 할 수 있는 스크립트가 있다.
 
-
-
 </br>
 
 ## match
@@ -214,7 +211,7 @@ git_url("https://github.com/fastlane-match.git")
 storage_mode("git")
 # 선택 가능: appstore, adhoc, enterprise or development
 # 개발용 프로파일 발급 시 "development", 앱 스토어 배포용 프로파일 발급시 "appstore"
-type("development") 
+type("development")
 username("test@example.com")  # 애플 이메일
 ```
 
@@ -226,11 +223,40 @@ username("test@example.com")  # 애플 이메일
 인증서 접근을 보호하기 위한 `Passphrase` 를 요구한다,  
 만약 공백으로 입력하면 `Git Repository` 에 인증서가 **업로드 되지**않는다
 
-반드시 `Passphrase` 를 입력하도록하자
+반드시 `Passphrase` 를 입력하도록하자, 그리고 이 키는 반드시 백업해둘 것
+
+</br>
+(2026/01/21 기준) Match 저장소에 인증서를 업로드 하기전에, 로컬 머신에 인증서가 없는경우, fastlane 은 Apple Developer 사이트에 인증서를 새로 발급받아 업로드하는데,
 
 </br>
 
-### 기존 프로파일을 만료하고 신규 프로파일 생성  
+이 때 `Passphrase` 를 요구한다.
+
+</br>
+
+로컬환경이나 CI 환경에서 신규 빌드 머신일 경우, 인증서를 내려받는 과정에서 `Passphrase` 를 요구하는데,
+
+로컬 머신의 경우 대화형 cli 로 `Passphrase` 전달이 가능하지만 CI 환경은 불가능하다
+
+</br>
+
+각 환경마다 Passphrase 입력을 자동화 할 수 있다.
+
+- 로컬 환경  
+  Fastfile 과 같은 경로에 `.env` 파일을 생성하고, MATCH_PASSWORD=<Passphrase 입력> 을 입력한다.  
+  단, git 에 추적되지않도록 .gitignore 에 fastlane/.env 를 추가한다
+
+- CI 환경  
+  git secrets 에 MATCH_PASSWORD 이름으로 새로운 시크릿을 추가하고
+  git action yml 파일에 환경변수를 추가한다
+
+```yml
+MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+```
+
+</br>
+
+### 기존 프로파일을 만료하고 신규 프로파일 생성
 
 ```bash
 fastlane match nuke development # 기존 프로파일 제거
@@ -263,9 +289,9 @@ fastlane match appstore --readonly      # 배포용
 1. Apple Developer 사이트 접속
 2. Account > Certificates, Identifiers & Profiles > **Devices** 탭 클릭
 3. `+` 클릭 후, 등록될 신규 기기의 플랫폼과 디바이스 명, 디바이스 ID 추가  
-  디바이스 ID 는 Xcode 에 등록될 기기 연결 후,  
-  Xcode > Product > Destinations > Manage Run Destinations 의  
-  Identifier 뒷자리 (ex: `00001234-001234060A2300BC`) 를 넣어주면 된다
+   디바이스 ID 는 Xcode 에 등록될 기기 연결 후,  
+   Xcode > Product > Destinations > Manage Run Destinations 의  
+   Identifier 뒷자리 (ex: `00001234-001234060A2300BC`) 를 넣어주면 된다
 4. 완료 후 **Profiles** 탭 클릭 후, 기존 프로파일 클릭
 5. `edit` 클릭 후, 방금 등록된 디바이스 선택 후 `save`
 6. 아래 명령 수행 (수정된 프로파일 다운로드)
@@ -279,7 +305,7 @@ fastlane match development
 
 </br>
 
-`nuke` 는 프로파일을 완전히 제거 후, 새롭게 프로파일을 생성하는 반면,  
+`nuke` 는 프로파일을 완전히 제거 후, 새롭게 프로파일을 생성하는 반면,
 
 `--force` 는 프로파일을 유지한 채로 갱신한다는 차이점이 있다.
 
@@ -303,27 +329,28 @@ fastlane match development
 5. `Add deploy key` 를 누르고 생성된 .pub 키를 저장한다.
 6. match 프로파일이 저장된 repository 의 `Secrets and variables` 로 이동해 생성된 개인키(ex: MATCH_SSH_KEY)를 추가한다.
 7. `Workflow` 에서 러너에 ssh 키 등록 & fastlane 을 실행한다
-  ```yaml
-  # ssh 키 등록
-  - name: Set up SSH key for match
-    run: |
-      mkdir -p ~/.ssh
-      echo "${{ secrets.MATCH_SSH_KEY }}" > ~/.ssh/id_ed25519
-      chmod 600 ~/.ssh/id_ed25519
-      ssh-keyscan github.com >> ~/.ssh/known_hosts
-    shell: bash
 
-  # fastlane 실행
-  - name: Run Fastlane
-    env:
-      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-    run: |
-      if [ "${GITHUB_REF##*/}" = "main" ]; then
-        bundle exec fastlane release
-      else
-        bundle exec fastlane beta
-      fi
-  ```
+```yaml
+# ssh 키 등록
+- name: Set up SSH key for match
+  run: |
+    mkdir -p ~/.ssh
+    echo "${{ secrets.MATCH_SSH_KEY }}" > ~/.ssh/id_ed25519
+    chmod 600 ~/.ssh/id_ed25519
+    ssh-keyscan github.com >> ~/.ssh/known_hosts
+  shell: bash
+
+# fastlane 실행
+- name: Run Fastlane
+  env:
+    MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  run: |
+    if [ "${GITHUB_REF##*/}" = "main" ]; then
+      bundle exec fastlane release
+    else
+      bundle exec fastlane beta
+    fi
+```
 
 </br>
 
@@ -345,13 +372,12 @@ PAT 에는 최소 `repo` 권한이 포함되어야함
 </br>
 </br>
 
-
 ## 참고
 
 ### XCConfigManager
 
 ```ruby
-class XCConfigManager 
+class XCConfigManager
   # xcconfig 파일 경로 (기본값: "../Config/Shared.xcconfig")
   def initialize(path = "../Config/Shared.xcconfig")
     @path = path
