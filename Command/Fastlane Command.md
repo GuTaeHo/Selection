@@ -219,11 +219,17 @@ username("test@example.com")  # 애플 이메일
 
 ### 주의사항
 
+#### Passphrase 는 반드시 입력할 것
+
 (2025/09/05 기준) 새로운 깃 레포지토리를 생성한뒤, 신규 프로파일 생성 시,  
 인증서 접근을 보호하기 위한 `Passphrase` 를 요구한다,  
 만약 공백으로 입력하면 `Git Repository` 에 인증서가 **업로드 되지**않는다
 
 반드시 `Passphrase` 를 입력하도록하자, 그리고 이 키는 반드시 백업해둘 것
+
+</br>
+
+#### Passphrase 자동화
 
 </br>
 (2026/01/21 기준) Match 저장소에 인증서를 업로드 하기전에, 로컬 머신에 인증서가 없는경우, fastlane 은 Apple Developer 사이트에 인증서를 새로 발급받아 업로드하는데,
@@ -253,6 +259,18 @@ username("test@example.com")  # 애플 이메일
 ```yml
 MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 ```
+
+</br>
+
+#### (중요!) 프로파일 명이 중복되어 번호가 붙을 때...
+
+키체인 접근에서 인증서를 제거하더라도 프로파일은 로컬환경에 캐싱되어 남아있다 (프로파일 뒤에 번호 붙어있는것들...)
+
+```sh
+/Users/username/Library/MobileDevice/Provisioning Profile/
+```
+
+위 경로로 이동해 남아있는 프로파일을 싹 지워준다음 --readonly 로 인증서를 불러오면된다
 
 </br>
 
