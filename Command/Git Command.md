@@ -88,6 +88,18 @@ git config --global core.quotepath false
 ```
 
 </br>
+
+### (macOS 에서) .DS_Store 가 포함될 때
+
+```sh
+# 전역 gitignore 파일 생성
+echo ".DS_Store" >> ~/.gitignore_global
+
+# Git 전역 설정에 등록
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+</br>
 </br>
 
 ## git clone
