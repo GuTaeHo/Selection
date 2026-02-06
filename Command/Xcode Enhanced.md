@@ -16,9 +16,6 @@ Option + 파일 클릭
 // 현재 파일 네비게이터에 표시
 Command + Shift + j
 
-// 탭으로 이동
-Command + Shift + [ or ]
-
 // 상단 바 고정
 Option + Command + t
 
