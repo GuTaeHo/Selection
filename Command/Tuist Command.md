@@ -69,6 +69,34 @@ tuist install --update
 
 </br>
 
+#### 간편한 방법 (자동)
+
+(Package.swift 가 있는 폴더에서) 스위프트 패키지 명령어 직접 호출
+
+```sh
+# 프로젝트 루트에서
+cd Tuist/
+
+...
+
+swift package update <패키지 명>
+# swift package update soybean
+```
+
+#### 패키지 목록 조회
+
+```sh
+swift package show-dependencies
+
+# or
+
+swift package show-dependencies --format json  # JSON 형식
+```
+
+</br>
+
+#### 패키지 버전 수정 (수동)
+
 1. Tuist 프로젝트 루트 디렉토리로 이동
 2. Tuist 디렉토리 아래에 있는 `Package.resolved` 파일 열기
 3. 수정하고 싶은 패키지의 버전(`version`)과 리비전(`revision`) 정보 변경
