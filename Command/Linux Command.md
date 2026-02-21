@@ -102,6 +102,8 @@ ssh-keygen -t rsa -b 4096 -f mykey
 
 ```zsh
 ssh-copy-id -i <공개키 경로> <서버 IP>
+
+# ex) ssh-copy-id -i ~/.ssh/id_ed25519_mymac.pub -p 22 taeho@muangs.kr
 ```
 
 </br>
